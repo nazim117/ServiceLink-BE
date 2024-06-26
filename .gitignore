@@ -1,6 +1,10 @@
 # Compiled class file
 *.class
 
+### Resources ###
+src/main/resources
+src/test/resources/local.properties
+
 # Log file
 *.log
 
