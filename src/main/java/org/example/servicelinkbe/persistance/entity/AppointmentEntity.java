@@ -2,10 +2,7 @@ package org.example.servicelinkbe.persistance.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
@@ -20,7 +17,7 @@ public class AppointmentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long id;
+    private Long id;
 
     @NotBlank
     @Column(name = "date")
@@ -30,4 +27,10 @@ public class AppointmentEntity {
     @Length(min = 2, max = 255)
     @Column(name = "description")
     private String description;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="user_id")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private UserEntity user;
 }

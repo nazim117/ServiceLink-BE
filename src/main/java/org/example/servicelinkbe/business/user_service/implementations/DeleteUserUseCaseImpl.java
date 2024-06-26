@@ -15,7 +15,7 @@ public class DeleteUserUseCaseImpl implements DeleteUserUseCase {
     private final UserRoleRepo userRoleRepo;
     @Transactional
     @Override
-    public void deleteUser(Integer id) {
+    public void deleteUser(Long id) {
         UserEntity user = userRepo.findById(id).orElse(null);
         if(user != null) {
             userRepo.deleteById(id);

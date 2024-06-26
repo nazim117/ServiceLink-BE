@@ -13,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 @RequestMapping("/api/users")
 @AllArgsConstructor
@@ -31,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<User> getUser(@PathVariable(value = "id") final Integer id){
+    public ResponseEntity<User> getUser(@PathVariable(value = "id") final Long id){
         User user = null;
         try {
             user = getUserUseCase.getUser(id);
@@ -51,7 +50,7 @@ public class UserController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Void> updateUser(@PathVariable(value = "id") final Integer id,
+    public ResponseEntity<Void> updateUser(@PathVariable(value = "id") final Long id,
                                            @RequestBody @Valid UpdateUserRequest request){
         request.setId(id);
         try {
@@ -62,7 +61,7 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable(value = "id") final Integer id){
+    public ResponseEntity<Void> deleteUser(@PathVariable(value = "id") final Long id){
         deleteUserUseCase.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
