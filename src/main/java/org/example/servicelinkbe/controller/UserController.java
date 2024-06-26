@@ -9,12 +9,10 @@ import org.example.servicelinkbe.domain.CreateUserResponse;
 import org.example.servicelinkbe.domain.GetAllUsersResponse;
 import org.example.servicelinkbe.domain.UpdateUserRequest;
 import org.example.servicelinkbe.domain.users.User;
-import org.example.servicelinkbe.persistance.entity.UserEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.file.AccessDeniedException;
 
 @RestController
 @RequestMapping("/api/users")

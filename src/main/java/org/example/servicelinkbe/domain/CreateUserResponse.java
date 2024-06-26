@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 @Builder
 public class CreateUserResponse {
-    private final int id;
+    private final long id;
 }

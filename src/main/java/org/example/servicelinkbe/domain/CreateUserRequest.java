@@ -15,9 +15,7 @@ public class CreateUserRequest {
     @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9_-]+\\.[A-Za-z]{2,}$")
     private String email;
     @NotBlank
-    private String fName;
-    @NotBlank
-    private String lName;
+    private String name;
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z\\d]).{12,}$\n")
     private String password;
     @NotBlank
