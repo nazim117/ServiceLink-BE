@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.servicelinkbe.business.user_service.implementations.UpdateUserUseCaseImplTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-06-27T20:13:47" hostname="NAZIM" time="0.009">
+  <properties/>
+  <testcase name="update_User_ValidRequest_UpdatesUserFields_ReturnsTrue()" classname="org.example.servicelinkbe.business.user_service.implementations.UpdateUserUseCaseImplTest" time="0.005"/>
+  <testcase name="update_User_InvalidUserId_ThrowsException()" classname="org.example.servicelinkbe.business.user_service.implementations.UpdateUserUseCaseImplTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

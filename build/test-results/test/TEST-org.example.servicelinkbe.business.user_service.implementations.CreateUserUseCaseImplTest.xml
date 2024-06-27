@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.servicelinkbe.business.user_service.implementations.CreateUserUseCaseImplTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2024-06-27T20:13:47" hostname="NAZIM" time="0.303">
+  <properties/>
+  <testcase name="create_createsUser_UserIsCustomerService_Successful()" classname="org.example.servicelinkbe.business.user_service.implementations.CreateUserUseCaseImplTest" time="0.275"/>
+  <testcase name="create_createsUser_UserIsAdmin_Successful()" classname="org.example.servicelinkbe.business.user_service.implementations.CreateUserUseCaseImplTest" time="0.005"/>
+  <testcase name="create_createsUser_UserIsFan_Successful()" classname="org.example.servicelinkbe.business.user_service.implementations.CreateUserUseCaseImplTest" time="0.005"/>
+  <testcase name="create_createUser_Failure_UserExists()" classname="org.example.servicelinkbe.business.user_service.implementations.CreateUserUseCaseImplTest" time="0.015"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
