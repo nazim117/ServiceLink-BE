@@ -1,5 +1,6 @@
 package org.example.servicelinkbe.business.user_service.implementations;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.example.servicelinkbe.business.user_service.interfaces.DeleteUserUseCase;
@@ -20,7 +21,8 @@ public class DeleteUserUseCaseImpl implements DeleteUserUseCase {
         if(user != null) {
             userRepo.deleteById(id);
             userRoleRepo.deleteUserRoleEntityByUser(user);
-
+        }else {
+            throw new EntityNotFoundException("User not found");
         }
     }
 }

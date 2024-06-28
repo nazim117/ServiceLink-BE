@@ -4,7 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.example.servicelinkbe.business.user_service.interfaces.GetUsersUseCase;
 import org.example.servicelinkbe.business.user_service.utilities.UserConverter;
-import org.example.servicelinkbe.domain.GetAllUsersResponse;
+import org.example.servicelinkbe.domain.get.GetAllUsersResponse;
 import org.example.servicelinkbe.domain.users.User;
 import org.example.servicelinkbe.persistance.repositories.UserRepo;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class GetUsersUseCaseImpl implements GetUsersUseCase {
     private final UserRepo userRepo;
     @Transactional
     @Override
-    public GetAllUsersResponse getUsers() {
+    public GetAllUsersResponse get() {
         List<User> users = userRepo.getUserEntitiesBy()
                 .stream()
                 .map(UserConverter::convert)

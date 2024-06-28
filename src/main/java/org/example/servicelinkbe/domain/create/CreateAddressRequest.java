@@ -10,10 +10,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateProvisionRequest {
+public class CreateAddressRequest {
     @NotBlank
-    private String name;
-    private CreateAddressRequest address;
+    private String street;
     @NotBlank
-    private String description;
+    private String city;
+    @NotBlank
+    private String postalCode;
+    @NotBlank
+    private String country;
 }

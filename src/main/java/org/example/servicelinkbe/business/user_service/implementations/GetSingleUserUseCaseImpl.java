@@ -18,7 +18,7 @@ public class GetSingleUserUseCaseImpl implements GetSingleUserUseCase {
     private final UserRepo userRepo;
     @Transactional
     @Override
-    public User getUser(Long id) throws AccessDeniedException {
+    public User get(Long id) throws AccessDeniedException {
         UserEntity userEntity =  userRepo.getUserEntityById(id);
         if(userEntity == null){
             throw new NullPointerException("Invalid user id");

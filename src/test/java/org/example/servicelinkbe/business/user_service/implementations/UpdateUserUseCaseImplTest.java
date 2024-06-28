@@ -1,7 +1,7 @@
 package org.example.servicelinkbe.business.user_service.implementations;
 
 import org.example.servicelinkbe.TestConfig;
-import org.example.servicelinkbe.domain.UpdateUserRequest;
+import org.example.servicelinkbe.domain.update.UpdateUserRequest;
 import org.example.servicelinkbe.persistance.entity.UserEntity;
 import org.example.servicelinkbe.persistance.repositories.UserRepo;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,13 +29,13 @@ class UpdateUserUseCaseImplTest {
     @Test
     void update_User_ValidRequest_UpdatesUserFields_ReturnsTrue(){
         long userId = 1l;
-        UpdateUserRequest request = createUpdateUserRequest(userId);
+        UpdateUserRequest request = createUpdateRequest(userId);
         UserEntity existingUser = createMockUserEntity(userId);
 
         when(userRepo.getUserEntityById(userId)).thenReturn(existingUser);
         when(userRepo.save(existingUser)).thenReturn(existingUser);
 
-        assertDoesNotThrow(() -> updateUserUseCase.updateUser(request));
+        assertDoesNotThrow(() -> updateUserUseCase.update(request));
 
         verify(userRepo).save(existingUser);
         assertEquals(request.getId(), existingUser.getId());
@@ -48,12 +48,12 @@ class UpdateUserUseCaseImplTest {
     @Test
     void update_User_InvalidUserId_ThrowsException(){
         long invalidUserId = 998l;
-        UpdateUserRequest request = createUpdateUserRequest(invalidUserId);
+        UpdateUserRequest request = createUpdateRequest(invalidUserId);
 
         when(userRepo.getUserEntityById(invalidUserId)).thenReturn(null);
 
         NullPointerException exception = assertThrows(NullPointerException.class,
-                () -> updateUserUseCase.updateUser(request));
+                () -> updateUserUseCase.update(request));
         assertEquals("User_ID_INVALID", exception.getMessage());
         verify(userRepo, never()).save(any());
     }
@@ -67,7 +67,7 @@ class UpdateUserUseCaseImplTest {
                 .build();
     }
 
-    private UpdateUserRequest createUpdateUserRequest(long userId) {
+    private UpdateUserRequest createUpdateRequest(long userId) {
         return UpdateUserRequest.builder()
                 .id(userId)
                 .email("test@example.com")

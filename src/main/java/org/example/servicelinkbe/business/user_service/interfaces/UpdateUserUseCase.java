@@ -1,9 +1,9 @@
 package org.example.servicelinkbe.business.user_service.interfaces;
 
-import org.example.servicelinkbe.domain.UpdateUserRequest;
+import org.example.servicelinkbe.domain.update.UpdateUserRequest;
 
 import java.nio.file.AccessDeniedException;
 
 public interface UpdateUserUseCase {
-    void updateUser(UpdateUserRequest request) throws AccessDeniedException;
+    void update(UpdateUserRequest request) throws AccessDeniedException;
 }

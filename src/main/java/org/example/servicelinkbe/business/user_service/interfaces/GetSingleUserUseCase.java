@@ -5,5 +5,5 @@ import org.example.servicelinkbe.domain.users.User;
 import java.nio.file.AccessDeniedException;
 
 public interface GetSingleUserUseCase {
-    User getUser(Long id) throws AccessDeniedException;
+    User get(Long id) throws AccessDeniedException;
 }

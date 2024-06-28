@@ -4,7 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.example.servicelinkbe.configuration.SecurityUtils;
 import org.example.servicelinkbe.business.user_service.interfaces.UpdateUserUseCase;
-import org.example.servicelinkbe.domain.UpdateUserRequest;
+import org.example.servicelinkbe.domain.update.UpdateUserRequest;
 import org.example.servicelinkbe.persistance.entity.UserEntity;
 import org.example.servicelinkbe.persistance.repositories.UserRepo;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class UpdateUserUseCaseImpl implements UpdateUserUseCase {
     private final UserRepo userRepo;
     @Transactional
     @Override
-    public void updateUser(UpdateUserRequest request) throws AccessDeniedException {
+    public void update(UpdateUserRequest request) throws AccessDeniedException {
         UserEntity userEntity = userRepo.getUserEntityById(request.getId());
         if(userEntity == null){
             throw new NullPointerException("User_ID_INVALID");

@@ -52,7 +52,7 @@ class GetSingleUserUseCaseImplTest {
         when(userRepo.getUserEntityById(userId)).thenReturn(mockUser);
         mockSecurityContext("test@example.com");
 
-        org.example.servicelinkbe.domain.users.User user = getUserUseCase.getUser(userId);
+        org.example.servicelinkbe.domain.users.User user = getUserUseCase.get(userId);
 
         assertNotNull(user);
         assertEquals(userId, user.getId());
@@ -65,7 +65,7 @@ class GetSingleUserUseCaseImplTest {
         mockSecurityContext("test@example.com");
 
         NullPointerException exception =
-                assertThrows(NullPointerException.class, () -> getUserUseCase.getUser(nonExistentUserId));
+                assertThrows(NullPointerException.class, () -> getUserUseCase.get(nonExistentUserId));
 
         assertEquals("Invalid user id", exception.getMessage());
     }
@@ -86,7 +86,7 @@ class GetSingleUserUseCaseImplTest {
         mockSecurityContext("test@example.com");
 
         AccessDeniedException exception = assertThrows(AccessDeniedException.class, () -> {
-            getUserUseCase.getUser(userId);
+            getUserUseCase.get(userId);
         });
 
         assertEquals("You do not have permission to access this user", exception.getMessage());

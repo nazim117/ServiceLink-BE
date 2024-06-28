@@ -1,12 +1,14 @@
 package org.example.servicelinkbe.controller;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.example.servicelinkbe.business.provision_service.interfaces.*;
-import org.example.servicelinkbe.domain.UpdateProvisionRequest;
+import org.example.servicelinkbe.domain.get.GetAllProvisionsResponse;
+import org.example.servicelinkbe.domain.update.UpdateProvisionRequest;
 import org.example.servicelinkbe.domain.create.CreateProvisionRequest;
 import org.example.servicelinkbe.domain.create.CreateResponse;
-import org.example.servicelinkbe.domain.GetAllUsersResponse;
+import org.example.servicelinkbe.domain.get.GetAllUsersResponse;
 import org.example.servicelinkbe.domain.Provision;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +25,7 @@ public class ProvisionController {
     private final DeleteProvisionUseCase deleteProvisionUseCase;
 
     @GetMapping
-    public ResponseEntity<GetAllUsersResponse> getProvisions(){
+    public ResponseEntity<GetAllProvisionsResponse> getProvisions(){
         return ResponseEntity.ok(getProvisionsUseCase.get());
     }
 
@@ -32,11 +34,11 @@ public class ProvisionController {
         Provision provision = null;
         try {
             provision = getSingleProvisionUseCase.get(id);
+            if(provision == null){
+                return  ResponseEntity.notFound().build();
+            }
         } catch (Exception e) {
             return ResponseEntity.status(401).build();
-        }
-        if(provision == null){
-            return  ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(provision);
     }
@@ -61,7 +63,12 @@ public class ProvisionController {
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteProvision(@PathVariable(value = "id") final Long id){
-        deleteProvisionUseCase.delete(id);
-        return ResponseEntity.noContent().build();
+        try {
+            deleteProvisionUseCase.delete(id);
+            return ResponseEntity.noContent().build();
+
+        }catch (EntityNotFoundException e){
+            return ResponseEntity.notFound().build();
+        }
     }
 }

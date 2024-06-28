@@ -2,7 +2,7 @@ package org.example.servicelinkbe.business.user_service.implementations;
 
 import org.example.servicelinkbe.TestConfig;
 import org.example.servicelinkbe.business.user_service.utilities.UserConverter;
-import org.example.servicelinkbe.domain.GetAllUsersResponse;
+import org.example.servicelinkbe.domain.get.GetAllUsersResponse;
 import org.example.servicelinkbe.domain.users.User;
 import org.example.servicelinkbe.persistance.entity.UserEntity;
 import org.example.servicelinkbe.persistance.repositories.UserRepo;
@@ -35,7 +35,7 @@ class GetUsersUseCaseImplTest {
     void get_Users_NoUsersExist_ReturnsEmptyResponse(){
         when(userRepo.getUserEntitiesBy()).thenReturn(new ArrayList<>());
 
-        GetAllUsersResponse response = getUsersUseCase.getUsers();
+        GetAllUsersResponse response = getUsersUseCase.get();
 
         assertEquals(0, response.getUsers().size());
     }
@@ -49,7 +49,7 @@ class GetUsersUseCaseImplTest {
                 .map(UserConverter::convert)
                 .toList();
 
-        GetAllUsersResponse response = getUsersUseCase.getUsers();
+        GetAllUsersResponse response = getUsersUseCase.get();
 
         assertEquals(users.size(), response.getUsers().size());
         assertEquals(users, response.getUsers());
