@@ -3,8 +3,8 @@ package org.example.servicelinkbe.business.user_service.implementations;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.example.servicelinkbe.business.user_service.interfaces.CreateUserUseCase;
-import org.example.servicelinkbe.domain.CreateUserRequest;
-import org.example.servicelinkbe.domain.CreateUserResponse;
+import org.example.servicelinkbe.domain.create.CreateUserRequest;
+import org.example.servicelinkbe.domain.create.CreateResponse;
 import org.example.servicelinkbe.persistance.entity.RoleEnum;
 import org.example.servicelinkbe.persistance.entity.UserEntity;
 import org.example.servicelinkbe.persistance.entity.UserRoleEntity;
@@ -24,7 +24,7 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
 
     @Transactional
     @Override
-    public CreateUserResponse createUser(CreateUserRequest request) {
+    public CreateResponse createUser(CreateUserRequest request) {
         if(userRepo.existsByEmail(request.getEmail())){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User exists");
         }
@@ -41,7 +41,7 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
         }
         saveUserRole(role, savedUser);
 
-        return CreateUserResponse
+        return CreateResponse
                 .builder()
                 .id(savedUser.getId())
                 .build();

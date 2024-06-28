@@ -1,4 +1,4 @@
-package org.example.servicelinkbe.domain;
+package org.example.servicelinkbe.domain.create;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

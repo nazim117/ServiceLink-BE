@@ -1,8 +1,8 @@
 package org.example.servicelinkbe.business.user_service.implementations;
 
 import org.example.servicelinkbe.TestConfig;
-import org.example.servicelinkbe.domain.CreateUserRequest;
-import org.example.servicelinkbe.domain.CreateUserResponse;
+import org.example.servicelinkbe.domain.create.CreateUserRequest;
+import org.example.servicelinkbe.domain.create.CreateResponse;
 import org.example.servicelinkbe.persistance.entity.RoleEnum;
 import org.example.servicelinkbe.persistance.entity.UserEntity;
 import org.example.servicelinkbe.persistance.entity.UserRoleEntity;
@@ -73,7 +73,7 @@ class CreateUserUseCaseImplTest {
                 .build());
         userEntity.setId(1l);
 
-        CreateUserResponse response = createUserUseCase.createUser(request);
+        CreateResponse response = createUserUseCase.createUser(request);
 
         assertNotNull(response);
         assertNotNull(response.getId());
@@ -124,7 +124,7 @@ class CreateUserUseCaseImplTest {
                 .build());
         userEntity.setId(1l);
 
-        CreateUserResponse response = createUserUseCase.createUser(request);
+        CreateResponse response = createUserUseCase.createUser(request);
 
         assertNotNull(response);
         assertNotNull(response.getId());
@@ -163,7 +163,7 @@ class CreateUserUseCaseImplTest {
                 .build());
         userEntity.setId(1l);
 
-        CreateUserResponse response = createUserUseCase.createUser(request);
+        CreateResponse response = createUserUseCase.createUser(request);
 
         assertNotNull(response);
         assertNotNull(response.getId());

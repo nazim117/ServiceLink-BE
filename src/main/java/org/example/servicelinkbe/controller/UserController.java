@@ -4,8 +4,8 @@ import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.example.servicelinkbe.business.user_service.interfaces.*;
-import org.example.servicelinkbe.domain.CreateUserRequest;
-import org.example.servicelinkbe.domain.CreateUserResponse;
+import org.example.servicelinkbe.domain.create.CreateUserRequest;
+import org.example.servicelinkbe.domain.create.CreateResponse;
 import org.example.servicelinkbe.domain.GetAllUsersResponse;
 import org.example.servicelinkbe.domain.UpdateUserRequest;
 import org.example.servicelinkbe.domain.users.User;
@@ -44,8 +44,8 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<CreateUserResponse> createUser(@Valid @RequestBody CreateUserRequest request){
-        CreateUserResponse response = createUserUseCase.createUser(request);
+    public ResponseEntity<CreateResponse> createUser(@Valid @RequestBody CreateUserRequest request){
+        CreateResponse response = createUserUseCase.createUser(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
