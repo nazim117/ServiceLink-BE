@@ -7,11 +7,21 @@ import org.example.servicelinkbe.persistance.entity.AddressEntity;
 
 @NoArgsConstructor
 public class AddressConverter {
-    public static Address convert(AddressEntity address) {
-        return null;
+    public static Address convert(AddressEntity addressEntity) {
+        return Address.builder()
+                .city(addressEntity.getCity())
+                .country(addressEntity.getCountry())
+                .postalCode(addressEntity.getPostalCode())
+                .street(addressEntity.getStreet())
+                .build();
     }
 
     public static AddressEntity convertToEntity(Address address) {
-        return null;
+        return AddressEntity.builder()
+                .city(address.getCity())
+                .country(address.getCountry())
+                .postalCode(address.getPostalCode())
+                .street(address.getStreet())
+                .build();
     }
 }
