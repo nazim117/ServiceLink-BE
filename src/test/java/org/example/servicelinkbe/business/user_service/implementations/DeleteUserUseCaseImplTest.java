@@ -1,5 +1,6 @@
 package org.example.servicelinkbe.business.user_service.implementations;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.example.servicelinkbe.TestConfig;
 import org.example.servicelinkbe.persistance.entity.RoleEnum;
 import org.example.servicelinkbe.persistance.entity.UserEntity;
@@ -11,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
 import java.util.HashSet;
@@ -69,9 +69,16 @@ class DeleteUserUseCaseImplTest {
     void delete_User_InvalidId_ThrowsException(){
         long invalidUserId = -1l;
 
+        // Arrange
         when(userRepo.findById(invalidUserId)).thenReturn(Optional.empty());
 
-        deleteUserUseCase.deleteUser(invalidUserId);
+        // Act & Assert
+        Exception exception = assertThrows(EntityNotFoundException.class, () -> {
+            deleteUserUseCase.deleteUser(invalidUserId);
+        });
+
+        // Validate the exception message
+        assertEquals("User not found", exception.getMessage());
 
         verify(userRepo, never()).deleteById(anyInt());
         verify(userRoleRepo, never()).deleteUserRoleEntityByUser(any(UserEntity.class));

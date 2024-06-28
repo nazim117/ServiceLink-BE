@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.example.servicelinkbe.business.user_service.implementations.DeleteUserUseCaseImplTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-06-27T20:13:47" hostname="NAZIM" time="0.023">
+<testsuite name="org.example.servicelinkbe.business.user_service.implementations.DeleteUserUseCaseImplTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-06-28T16:03:26" hostname="NAZIM" time="0.008">
   <properties/>
-  <testcase name="delete_User_ValidId_DeletesUser()" classname="org.example.servicelinkbe.business.user_service.implementations.DeleteUserUseCaseImplTest" time="0.019"/>
+  <testcase name="delete_User_ValidId_DeletesUser()" classname="org.example.servicelinkbe.business.user_service.implementations.DeleteUserUseCaseImplTest" time="0.004"/>
   <testcase name="delete_User_InvalidId_ThrowsException()" classname="org.example.servicelinkbe.business.user_service.implementations.DeleteUserUseCaseImplTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

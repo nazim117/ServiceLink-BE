@@ -8,6 +8,7 @@ import org.example.servicelinkbe.persistance.entity.AppointmentEntity;
 public class AppointmentConverter {
     public static Appointment convert(AppointmentEntity appointmentEntity) {
         return Appointment.builder()
+                .id(appointmentEntity.getId())
                 .datetime(appointmentEntity.getDatetime())
                 .description(appointmentEntity.getDescription())
                 .build();
