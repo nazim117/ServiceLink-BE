@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.example.servicelinkbe.ProvisionLinkBeApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-06-28T16:03:25" hostname="NAZIM" time="0.266">
+<testsuite name="org.example.servicelinkbe.ProvisionLinkBeApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-06-28T20:56:10" hostname="NAZIM" time="0.021">
   <properties/>
-  <testcase name="contextLoads()" classname="org.example.servicelinkbe.ProvisionLinkBeApplicationTests" time="0.266"/>
-  <system-out><![CDATA[18:03:16.145 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [org.example.servicelinkbe.ProvisionLinkBeApplicationTests]: ProvisionLinkBeApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-18:03:16.360 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration org.example.servicelinkbe.ServiceLinkBeApplication for test class org.example.servicelinkbe.ProvisionLinkBeApplicationTests
+  <testcase name="contextLoads()" classname="org.example.servicelinkbe.ProvisionLinkBeApplicationTests" time="0.021"/>
+  <system-out><![CDATA[22:55:59.687 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [org.example.servicelinkbe.ProvisionLinkBeApplicationTests]: ProvisionLinkBeApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+22:55:59.875 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration org.example.servicelinkbe.ServiceLinkBeApplication for test class org.example.servicelinkbe.ProvisionLinkBeApplicationTests
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -14,36 +14,36 @@
 
  :: Spring Boot ::                (v3.3.1)
 
-2024-06-28T18:03:17.076+02:00  INFO 23840 --- [    Test worker] o.e.s.ProvisionLinkBeApplicationTests    : Starting ProvisionLinkBeApplicationTests using Java 17.0.10 with PID 23840 (started by nahme in C:\Side-project\ServiceLink-BE)
-2024-06-28T18:03:17.078+02:00  INFO 23840 --- [    Test worker] o.e.s.ProvisionLinkBeApplicationTests    : No active profile set, falling back to 1 default profile: "default"
-2024-06-28T18:03:18.511+02:00  INFO 23840 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-06-28T18:03:18.638+02:00  INFO 23840 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 115 ms. Found 5 JPA repository interfaces.
-2024-06-28T18:03:20.463+02:00  INFO 23840 --- [    Test worker] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/service_link (MySQL 8.4)
-2024-06-28T18:03:20.504+02:00  WARN 23840 --- [    Test worker] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: MySQL 8.4 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.1.
-2024-06-28T18:03:20.610+02:00  INFO 23840 --- [    Test worker] o.f.core.internal.command.DbValidate     : Successfully validated 0 migrations (execution time 00:00.060s)
-2024-06-28T18:03:20.610+02:00  WARN 23840 --- [    Test worker] o.f.core.internal.command.DbValidate     : No migrations found. Are your locations set up correctly?
-2024-06-28T18:03:20.660+02:00  INFO 23840 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Current version of schema `service_link`: << Empty Schema >>
-2024-06-28T18:03:20.670+02:00  INFO 23840 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Schema `service_link` is up to date. No migration necessary.
-2024-06-28T18:03:20.892+02:00  INFO 23840 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-06-28T18:03:21.068+02:00  INFO 23840 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-06-28T18:03:21.143+02:00  INFO 23840 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-06-28T18:03:21.617+02:00  INFO 23840 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-06-28T18:03:21.657+02:00  INFO 23840 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-06-28T18:03:21.734+02:00  INFO 23840 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1e9d721
-2024-06-28T18:03:21.738+02:00  INFO 23840 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-06-28T18:03:21.805+02:00  WARN 23840 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-06-28T18:03:21.807+02:00  WARN 23840 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2024-06-28T18:03:23.341+02:00  INFO 23840 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-06-28T18:03:23.346+02:00  INFO 23840 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-06-28T18:03:24.471+02:00  WARN 23840 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-06-28T18:03:25.422+02:00  WARN 23840 --- [    Test worker] .s.s.UserDetailsServiceAutoConfiguration : 
+2024-06-28T22:56:00.902+02:00  INFO 4456 --- [    Test worker] o.e.s.ProvisionLinkBeApplicationTests    : Starting ProvisionLinkBeApplicationTests using Java 17.0.10 with PID 4456 (started by nahme in C:\Side-project\ServiceLink-BE)
+2024-06-28T22:56:00.902+02:00  INFO 4456 --- [    Test worker] o.e.s.ProvisionLinkBeApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2024-06-28T22:56:02.838+02:00  INFO 4456 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-28T22:56:03.023+02:00  INFO 4456 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 166 ms. Found 5 JPA repository interfaces.
+2024-06-28T22:56:04.726+02:00  INFO 4456 --- [    Test worker] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/service_link (MySQL 8.4)
+2024-06-28T22:56:04.775+02:00  WARN 4456 --- [    Test worker] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: MySQL 8.4 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.1.
+2024-06-28T22:56:04.849+02:00  INFO 4456 --- [    Test worker] o.f.core.internal.command.DbValidate     : Successfully validated 0 migrations (execution time 00:00.050s)
+2024-06-28T22:56:04.849+02:00  WARN 4456 --- [    Test worker] o.f.core.internal.command.DbValidate     : No migrations found. Are your locations set up correctly?
+2024-06-28T22:56:04.908+02:00  INFO 4456 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Current version of schema `service_link`: << Empty Schema >>
+2024-06-28T22:56:04.919+02:00  INFO 4456 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Schema `service_link` is up to date. No migration necessary.
+2024-06-28T22:56:05.106+02:00  INFO 4456 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-28T22:56:05.262+02:00  INFO 4456 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-28T22:56:05.335+02:00  INFO 4456 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-06-28T22:56:05.610+02:00  INFO 4456 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-28T22:56:05.656+02:00  INFO 4456 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-28T22:56:05.735+02:00  INFO 4456 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2a2815cc
+2024-06-28T22:56:05.739+02:00  INFO 4456 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-28T22:56:05.798+02:00  WARN 4456 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-28T22:56:05.802+02:00  WARN 4456 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-06-28T22:56:07.541+02:00  INFO 4456 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-28T22:56:07.551+02:00  INFO 4456 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-28T22:56:08.774+02:00  WARN 4456 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-28T22:56:09.621+02:00  WARN 4456 --- [    Test worker] .s.s.UserDetailsServiceAutoConfiguration : 
 
-Using generated security password: 3db79f73-9153-43d1-af8f-e50577f94e15
+Using generated security password: e009f3c9-b4a5-4e51-b23f-9e82154ee5a0
 
 This generated password is for development use only. Your security configuration must be updated before running your application in production.
 
-2024-06-28T18:03:25.439+02:00  INFO 23840 --- [    Test worker] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
-2024-06-28T18:03:25.718+02:00  INFO 23840 --- [    Test worker] o.e.s.ProvisionLinkBeApplicationTests    : Started ProvisionLinkBeApplicationTests in 9.053 seconds (process running for 11.138)
+2024-06-28T22:56:09.636+02:00  INFO 4456 --- [    Test worker] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2024-06-28T22:56:09.998+02:00  INFO 4456 --- [    Test worker] o.e.s.ProvisionLinkBeApplicationTests    : Started ProvisionLinkBeApplicationTests in 9.614 seconds (process running for 13.51)
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
