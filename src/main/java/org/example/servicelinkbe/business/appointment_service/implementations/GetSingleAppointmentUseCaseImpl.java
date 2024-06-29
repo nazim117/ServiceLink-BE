@@ -5,10 +5,8 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.example.servicelinkbe.business.appointment_service.interfaces.GetSingleAppointmentUseCase;
 import org.example.servicelinkbe.business.appointment_service.utilities.AppointmentConverter;
-import org.example.servicelinkbe.business.provision_service.utilities.ProvisionConverter;
 import org.example.servicelinkbe.domain.Appointment;
 import org.example.servicelinkbe.persistance.entity.AppointmentEntity;
-import org.example.servicelinkbe.persistance.entity.ProvisionEntity;
 import org.example.servicelinkbe.persistance.repositories.AppointmentRepo;
 import org.springframework.stereotype.Service;
 

@@ -9,7 +9,7 @@ public class AppointmentConverter {
     public static Appointment convert(AppointmentEntity appointmentEntity) {
         return Appointment.builder()
                 .id(appointmentEntity.getId())
-                .datetime(appointmentEntity.getDatetime())
+                .datetime(appointmentEntity.getCreatedAt())
                 .description(appointmentEntity.getDescription())
                 .build();
     }

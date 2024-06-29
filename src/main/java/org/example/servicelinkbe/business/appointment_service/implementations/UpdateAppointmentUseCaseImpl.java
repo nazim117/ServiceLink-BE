@@ -27,7 +27,7 @@ public class UpdateAppointmentUseCaseImpl implements UpdateAppointmentUseCase {
 
     private void updateFields(UpdateAppointmentRequest request, AppointmentEntity appointmentEntity) {
         appointmentEntity.setId(request.getId());
-        appointmentEntity.setDatetime(request.getDatetime());
+        appointmentEntity.setUpdatedAt(request.getDatetime());
         appointmentEntity.setDescription(request.getDescription());
 
         appointmentRepo.save(appointmentEntity);

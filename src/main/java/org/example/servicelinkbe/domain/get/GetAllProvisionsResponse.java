@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.servicelinkbe.domain.Provision;
+import org.example.servicelinkbe.domain.ServiceProvider;
 
 import java.util.List;
 
@@ -13,5 +13,5 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetAllProvisionsResponse {
-    List<Provision> provisions;
+    List<ServiceProvider> serviceProviders;
 }

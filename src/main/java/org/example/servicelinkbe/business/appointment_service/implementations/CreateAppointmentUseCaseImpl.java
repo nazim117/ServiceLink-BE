@@ -18,7 +18,7 @@ public class CreateAppointmentUseCaseImpl implements CreateAppointmentUseCase {
     @Override
     public CreateResponse create(CreateAppointmentRequest request) {
         AppointmentEntity appointmentEntity = AppointmentEntity.builder()
-                .datetime(request.getDatetime())
+                .createdAt(request.getDatetime())
                 .description(request.getDescription())
                 .build();
 
