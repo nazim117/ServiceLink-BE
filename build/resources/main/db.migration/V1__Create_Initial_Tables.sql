@@ -2,7 +2,7 @@ CREATE TABLE addresses (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     street VARCHAR(100) NOT NULL,
     city VARCHAR(100) NOT NULL,
-    postalCode VARCHAR(10) NOT NULL,
+    postal_code VARCHAR(10) NOT NULL,
     country VARCHAR(60) NOT NULL
 );
 

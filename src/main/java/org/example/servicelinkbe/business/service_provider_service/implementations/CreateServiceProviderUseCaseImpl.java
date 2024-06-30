@@ -8,6 +8,7 @@ import org.example.servicelinkbe.domain.create.CreateServiceProviderRequest;
 import org.example.servicelinkbe.domain.create.CreateResponse;
 import org.example.servicelinkbe.persistance.entity.AddressEntity;
 import org.example.servicelinkbe.persistance.entity.ServiceProviderEntity;
+import org.example.servicelinkbe.persistance.repositories.AddressRepo;
 import org.example.servicelinkbe.persistance.repositories.ProvisionRepo;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class CreateServiceProviderUseCaseImpl implements CreateServiceProviderUseCase {
     private final ProvisionRepo provisionRepo;
+    private final AddressRepo addressRepo;
 
     @Transactional
     @Override
@@ -27,11 +29,14 @@ public class CreateServiceProviderUseCaseImpl implements CreateServiceProviderUs
                 .postalCode(addressRequest.getPostalCode())
                 .build();
 
+        addressRepo.save(addressEntity);
+
         ServiceProviderEntity serviceProviderEntity = ServiceProviderEntity
                 .builder()
                 .name(request.getName())
                 .address(addressEntity)
                 .description(request.getDescription())
+                .imagePath(request.getImagePath())
                 .build();
 
         Long provisionId= provisionRepo.save(serviceProviderEntity).getId();

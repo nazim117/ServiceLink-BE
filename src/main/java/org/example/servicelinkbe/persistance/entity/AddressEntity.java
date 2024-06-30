@@ -32,7 +32,7 @@ public class AddressEntity {
 
     @NotBlank
     @Length(min = 2, max = 10)
-    @Column(name = "postalCode")
+    @Column(name = "postal_code")
     private String postalCode;
 
     @NotBlank

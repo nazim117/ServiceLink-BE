@@ -20,7 +20,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebSecurityConfig {
     private static final String USERS_ENDPOINT = "/api/users";
-    private static final String TICKETS_ENDPOINT = "/api/tickets";
+    private static final String SERVICES_ENDPOINT = "/api/services";
     private static final String[] SWAGGER_UI_RESOURCES = {
             "/v3/api-docs/**",
             "/swagger-resources/**",
@@ -38,10 +38,10 @@ public class WebSecurityConfig {
                         configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(registry ->
                         registry.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                                .requestMatchers(HttpMethod.POST, USERS_ENDPOINT, "/api/tokens","/api/tokens/register",TICKETS_ENDPOINT).permitAll()
-                                .requestMatchers(HttpMethod.GET, USERS_ENDPOINT, USERS_ENDPOINT+"/{id}", TICKETS_ENDPOINT, "/api/matches", "/api/matches/{id}", "/api/matches/upcoming").permitAll()
-                                .requestMatchers(HttpMethod.DELETE, USERS_ENDPOINT, TICKETS_ENDPOINT).permitAll()
-                                .requestMatchers(HttpMethod.PUT, USERS_ENDPOINT, TICKETS_ENDPOINT).permitAll()
+                                .requestMatchers(HttpMethod.POST, USERS_ENDPOINT, "/api/tokens","/api/tokens/register", SERVICES_ENDPOINT).permitAll()
+                                .requestMatchers(HttpMethod.GET, USERS_ENDPOINT, USERS_ENDPOINT+"/{id}", SERVICES_ENDPOINT).permitAll()
+                                .requestMatchers(HttpMethod.DELETE, USERS_ENDPOINT, SERVICES_ENDPOINT).permitAll()
+                                .requestMatchers(HttpMethod.PUT, USERS_ENDPOINT, SERVICES_ENDPOINT).permitAll()
                                 .requestMatchers(SWAGGER_UI_RESOURCES).permitAll()
                                 .requestMatchers("/ws/**").permitAll()
                                 .anyRequest().authenticated()
