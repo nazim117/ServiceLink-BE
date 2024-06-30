@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.example.servicelinkbe.business.provision_service.implementations.UpdateProvisionUseCaseImplTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-06-28T20:55:58" hostname="NAZIM" time="1.094">
-  <properties/>
-  <testcase name="testUpdateSuccess()" classname="org.example.servicelinkbe.business.provision_service.implementations.UpdateProvisionUseCaseImplTest" time="1.086"/>
-  <testcase name="testUpdateNotFound()" classname="org.example.servicelinkbe.business.provision_service.implementations.UpdateProvisionUseCaseImplTest" time="0.007"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

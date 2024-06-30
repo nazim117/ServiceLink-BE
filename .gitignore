@@ -1,6 +1,9 @@
 # Compiled class file
 *.class
 
+## JWT generator ###
+src/main/java/org/example/servicelinkbe/utilities/JwtUtil.java
+
 ### Resources ###
 src/main/resources
 src/test/resources/local.properties

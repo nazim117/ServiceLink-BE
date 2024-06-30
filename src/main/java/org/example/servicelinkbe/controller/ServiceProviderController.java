@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import org.example.servicelinkbe.business.service_provider_service.interfaces.*;
 import org.example.servicelinkbe.domain.get.GetAllProvisionsResponse;
 import org.example.servicelinkbe.domain.update.UpdateProvisionRequest;
-import org.example.servicelinkbe.domain.create.CreateProvisionRequest;
+import org.example.servicelinkbe.domain.create.CreateServiceProviderRequest;
 import org.example.servicelinkbe.domain.create.CreateResponse;
 import org.example.servicelinkbe.domain.ServiceProvider;
 import org.springframework.http.HttpStatus;
@@ -43,7 +43,7 @@ public class ServiceProviderController {
     }
 
     @PostMapping
-    public ResponseEntity<CreateResponse> createProvision(@Valid @RequestBody CreateProvisionRequest request){
+    public ResponseEntity<CreateResponse> createProvision(@Valid @RequestBody CreateServiceProviderRequest request){
         CreateResponse response = createServiceProviderUseCase.create(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

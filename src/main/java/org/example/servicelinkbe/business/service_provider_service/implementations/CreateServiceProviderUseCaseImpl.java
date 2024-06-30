@@ -4,7 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.example.servicelinkbe.business.service_provider_service.interfaces.CreateServiceProviderUseCase;
 import org.example.servicelinkbe.domain.create.CreateAddressRequest;
-import org.example.servicelinkbe.domain.create.CreateProvisionRequest;
+import org.example.servicelinkbe.domain.create.CreateServiceProviderRequest;
 import org.example.servicelinkbe.domain.create.CreateResponse;
 import org.example.servicelinkbe.persistance.entity.AddressEntity;
 import org.example.servicelinkbe.persistance.entity.ServiceProviderEntity;
@@ -18,7 +18,7 @@ public class CreateServiceProviderUseCaseImpl implements CreateServiceProviderUs
 
     @Transactional
     @Override
-    public CreateResponse create(CreateProvisionRequest request) {
+    public CreateResponse create(CreateServiceProviderRequest request) {
         CreateAddressRequest addressRequest = request.getAddress();
         AddressEntity addressEntity = AddressEntity.builder()
                 .street(addressRequest.getStreet())

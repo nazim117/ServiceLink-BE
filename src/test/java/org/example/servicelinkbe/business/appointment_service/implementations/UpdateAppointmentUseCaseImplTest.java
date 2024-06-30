@@ -36,7 +36,7 @@ class UpdateAppointmentUseCaseImplTest {
         UpdateAppointmentRequest request = new UpdateAppointmentRequest(1L, LocalDateTime.now().plusDays(1), "Updated Description");
         AppointmentEntity foundEntity = new AppointmentEntity();
         foundEntity.setId(request.getId());
-        foundEntity.setDatetime(LocalDateTime.now());
+        foundEntity.setUpdatedAt(LocalDateTime.now());
         foundEntity.setDescription("Initial Description");
 
         when(appointmentRepo.findById(request.getId())).thenReturn(Optional.of(foundEntity));
@@ -48,7 +48,7 @@ class UpdateAppointmentUseCaseImplTest {
         // Assert
         verify(appointmentRepo).save(foundEntity);
         assertEquals(request.getDescription(), foundEntity.getDescription());
-        assertEquals(request.getDatetime(), foundEntity.getDatetime());
+        assertEquals(request.getDatetime(), foundEntity.getUpdatedAt());
     }
 
     @Test

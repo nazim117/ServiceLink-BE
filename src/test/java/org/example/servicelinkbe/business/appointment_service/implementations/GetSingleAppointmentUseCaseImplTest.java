@@ -48,7 +48,7 @@ class GetSingleAppointmentUseCaseImplTest {
     private AppointmentEntity createMockAppointment(long appointmentId, LocalDateTime date) {
         return AppointmentEntity.builder()
                 .id(appointmentId)
-                .datetime(date)
+                .createdAt(date)
                 .description("Check-up")
                 .build();
     }

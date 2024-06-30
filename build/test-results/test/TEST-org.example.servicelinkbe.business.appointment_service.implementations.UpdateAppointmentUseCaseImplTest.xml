@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.example.servicelinkbe.business.appointment_service.implementations.UpdateAppointmentUseCaseImplTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-06-28T20:56:10" hostname="NAZIM" time="0.008">
+<testsuite name="org.example.servicelinkbe.business.appointment_service.implementations.UpdateAppointmentUseCaseImplTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-06-29T18:19:30" hostname="NAZIM" time="0.009">
   <properties/>
-  <testcase name="testUpdateNonExistingAppointment()" classname="org.example.servicelinkbe.business.appointment_service.implementations.UpdateAppointmentUseCaseImplTest" time="0.003"/>
+  <testcase name="testUpdateNonExistingAppointment()" classname="org.example.servicelinkbe.business.appointment_service.implementations.UpdateAppointmentUseCaseImplTest" time="0.005"/>
   <testcase name="testUpdateExistingAppointment()" classname="org.example.servicelinkbe.business.appointment_service.implementations.UpdateAppointmentUseCaseImplTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

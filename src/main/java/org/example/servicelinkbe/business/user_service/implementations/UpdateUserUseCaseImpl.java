@@ -2,7 +2,7 @@ package org.example.servicelinkbe.business.user_service.implementations;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.example.servicelinkbe.configuration.SecurityUtils;
+import org.example.servicelinkbe.configuration.security.SecurityUtils;
 import org.example.servicelinkbe.business.user_service.interfaces.UpdateUserUseCase;
 import org.example.servicelinkbe.domain.update.UpdateUserRequest;
 import org.example.servicelinkbe.persistance.entity.UserEntity;

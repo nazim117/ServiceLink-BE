@@ -2,7 +2,7 @@ package org.example.servicelinkbe.business.service_provider_service.implementati
 
 import org.example.servicelinkbe.TestConfig;
 import org.example.servicelinkbe.domain.create.CreateAddressRequest;
-import org.example.servicelinkbe.domain.create.CreateProvisionRequest;
+import org.example.servicelinkbe.domain.create.CreateServiceProviderRequest;
 import org.example.servicelinkbe.domain.create.CreateResponse;
 import org.example.servicelinkbe.persistance.entity.ServiceProviderEntity;
 import org.example.servicelinkbe.persistance.repositories.ProvisionRepo;
@@ -30,7 +30,7 @@ class CreateServiceProviderUseCaseImplTest {
     @Test
     void testCreate() {
         CreateAddressRequest addressRequest = CreateAddressRequest.builder().street("Street").city("City").country("Country").postalCode("PostalCode").build();
-        CreateProvisionRequest request = CreateProvisionRequest.builder().name("Name").address(addressRequest).description("Description").build();
+        CreateServiceProviderRequest request = CreateServiceProviderRequest.builder().name("Name").address(addressRequest).description("Description").build();
 
         ServiceProviderEntity savedEntity = ServiceProviderEntity.builder().id(1L).name("Name").description("Description").build();
         when(provisionRepo.save(any(ServiceProviderEntity.class))).thenReturn(savedEntity);

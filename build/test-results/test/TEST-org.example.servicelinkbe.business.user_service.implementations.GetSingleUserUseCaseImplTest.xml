@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.example.servicelinkbe.business.user_service.implementations.GetSingleUserUseCaseImplTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-06-28T20:56:10" hostname="NAZIM" time="0.036">
+<testsuite name="org.example.servicelinkbe.business.user_service.implementations.GetSingleUserUseCaseImplTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-06-29T18:19:30" hostname="NAZIM" time="0.038">
   <properties/>
-  <testcase name="getUser_AccessDenied_ThrowsAccessDeniedException()" classname="org.example.servicelinkbe.business.user_service.implementations.GetSingleUserUseCaseImplTest" time="0.027"/>
+  <testcase name="getUser_AccessDenied_ThrowsAccessDeniedException()" classname="org.example.servicelinkbe.business.user_service.implementations.GetSingleUserUseCaseImplTest" time="0.028"/>
   <testcase name="getUser_UserDoesNotExist_ReturnsNull()" classname="org.example.servicelinkbe.business.user_service.implementations.GetSingleUserUseCaseImplTest" time="0.004"/>
-  <testcase name="get_User_UserExists_ReturnsTrue()" classname="org.example.servicelinkbe.business.user_service.implementations.GetSingleUserUseCaseImplTest" time="0.004"/>
+  <testcase name="get_User_UserExists_ReturnsTrue()" classname="org.example.servicelinkbe.business.user_service.implementations.GetSingleUserUseCaseImplTest" time="0.006"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
