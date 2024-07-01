@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.example.servicelinkbe.business.service_provider_service.implementations.DeleteServiceProviderUseCaseImplTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-06-29T18:19:30" hostname="NAZIM" time="0.007">
+<testsuite name="org.example.servicelinkbe.business.service_provider_service.implementations.DeleteServiceProviderUseCaseImplTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-07-01T07:54:06" hostname="NAZIM" time="0.007">
   <properties/>
   <testcase name="testDeleteNotFound()" classname="org.example.servicelinkbe.business.service_provider_service.implementations.DeleteServiceProviderUseCaseImplTest" time="0.003"/>
   <testcase name="testDeleteSuccess()" classname="org.example.servicelinkbe.business.service_provider_service.implementations.DeleteServiceProviderUseCaseImplTest" time="0.003"/>

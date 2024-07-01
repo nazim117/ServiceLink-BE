@@ -5,7 +5,7 @@ import java.util.Set;
 public interface AccessToken {
     String getSubject();
 
-    Integer getUserId();
+    Long getUserId();
 
     Set<String> getRoles();
 
