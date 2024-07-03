@@ -16,10 +16,9 @@ public class DeleteAppointmentUseCaseImpl implements DeleteAppointmentUseCase {
     @Override
     public void delete(Long id) {
         AppointmentEntity appointmentEntity = appointmentRepo.findById(id).orElse(null);
-        if(appointmentEntity != null) {
-            appointmentRepo.delete(appointmentEntity);
-        }else {
+        if(appointmentEntity == null) {
             throw new EntityNotFoundException("Service not found");
         }
+        appointmentRepo.delete(appointmentEntity);
     }
 }

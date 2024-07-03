@@ -25,7 +25,7 @@ public class UserController {
     private final DeleteUserUseCase deleteUserUseCase;
 
     @GetMapping
-    @RolesAllowed({"ADMIN", "CUSTOMER_SERVICE"})
+    @RolesAllowed({"ADMIN", "SERVICE_PROVIDER"})
     public ResponseEntity<GetAllUsersResponse> getUsers(){
         return ResponseEntity.ok(getUsersUseCase.get());
     }

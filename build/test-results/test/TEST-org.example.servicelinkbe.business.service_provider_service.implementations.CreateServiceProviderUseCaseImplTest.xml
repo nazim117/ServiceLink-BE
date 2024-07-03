@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.example.servicelinkbe.business.service_provider_service.implementations.CreateServiceProviderUseCaseImplTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-07-01T07:54:06" hostname="NAZIM" time="0.092">
-  <properties/>
-  <testcase name="testCreate()" classname="org.example.servicelinkbe.business.service_provider_service.implementations.CreateServiceProviderUseCaseImplTest" time="0.092"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

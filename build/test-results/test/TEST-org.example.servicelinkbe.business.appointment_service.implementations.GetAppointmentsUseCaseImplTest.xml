@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.example.servicelinkbe.business.appointment_service.implementations.GetAppointmentsUseCaseImplTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-07-01T07:54:06" hostname="NAZIM" time="0.005">
-  <properties/>
-  <testcase name="testGet()" classname="org.example.servicelinkbe.business.appointment_service.implementations.GetAppointmentsUseCaseImplTest" time="0.005"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

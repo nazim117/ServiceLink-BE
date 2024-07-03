@@ -1,5 +1,7 @@
 package org.example.servicelinkbe.controller;
 
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -24,7 +26,7 @@ public class AppointmentController {
     private final UpdateAppointmentUseCase updateAppointmentUseCase;
 
     @GetMapping
-    public ResponseEntity<GetAllAppointmentsResponse> getAppointments(){
+    public ResponseEntity<GetAllAppointmentsResponse> getAppointments() throws EntityNotFoundException{
         return ResponseEntity.ok(getAppointmentsUseCase.get());
     }
 
@@ -36,16 +38,20 @@ public class AppointmentController {
             if(appointment == null){
                 return  ResponseEntity.notFound().build();
             }
-        } catch (Exception e) {
+        } catch (EntityNotFoundException e) {
             return ResponseEntity.status(401).build();
         }
         return ResponseEntity.ok().body(appointment);
     }
 
     @PostMapping
-    public ResponseEntity<CreateResponse> create(@Valid @RequestBody CreateAppointmentRequest request){
-        CreateResponse response = createAppointmentUseCase.create(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    public ResponseEntity<CreateResponse> create(@Valid @RequestBody CreateAppointmentRequest request) {
+        try{
+            CreateResponse response = createAppointmentUseCase.create(request);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        }catch (EntityExistsException e){
+            return  ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
     }
 
     @PutMapping("{id}")
@@ -54,7 +60,7 @@ public class AppointmentController {
         request.setId(id);
         try {
             updateAppointmentUseCase.update(request);
-        } catch (Exception e) {
+        } catch (EntityNotFoundException e) {
             return ResponseEntity.status(401).build();
         }
         return ResponseEntity.noContent().build();

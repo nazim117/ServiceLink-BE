@@ -1,5 +1,6 @@
 package org.example.servicelinkbe.business.appointment_service.implementations;
 
+import jakarta.persistence.EntityExistsException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.example.servicelinkbe.business.appointment_service.interfaces.CreateAppointmentUseCase;
@@ -17,6 +18,9 @@ public class CreateAppointmentUseCaseImpl implements CreateAppointmentUseCase {
     @Transactional
     @Override
     public CreateResponse create(CreateAppointmentRequest request) {
+        if(appointmentRepo.existsByCreatedAt(request.getDatetime())){
+            throw new EntityExistsException("Appointment already exists for this date");
+        }
         AppointmentEntity appointmentEntity = AppointmentEntity.builder()
                 .createdAt(request.getDatetime())
                 .description(request.getDescription())

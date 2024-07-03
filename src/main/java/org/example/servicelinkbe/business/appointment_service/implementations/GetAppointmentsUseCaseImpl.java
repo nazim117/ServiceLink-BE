@@ -1,5 +1,6 @@
 package org.example.servicelinkbe.business.appointment_service.implementations;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.example.servicelinkbe.business.appointment_service.interfaces.GetAppointmentsUseCase;
@@ -22,6 +23,10 @@ public class GetAppointmentsUseCaseImpl implements GetAppointmentsUseCase {
                 .stream()
                 .map(AppointmentConverter::convert)
                 .toList();
+
+        if (appointments.isEmpty()) {
+            throw new EntityNotFoundException("No appointments found");
+        }
 
         return GetAllAppointmentsResponse
                 .builder()
