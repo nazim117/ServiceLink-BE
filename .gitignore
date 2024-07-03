@@ -29,3 +29,9 @@ src/test/resources/local.properties
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# Ignore Gradle files and directories
+.gradle/
+
+# Ignore build output directories
+build/
