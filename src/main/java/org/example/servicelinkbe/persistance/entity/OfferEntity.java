@@ -12,6 +12,7 @@ import java.time.Duration;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

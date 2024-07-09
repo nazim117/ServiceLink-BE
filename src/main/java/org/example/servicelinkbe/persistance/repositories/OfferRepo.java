@@ -4,6 +4,10 @@ import org.example.servicelinkbe.persistance.entity.OfferEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface OfferRepo extends JpaRepository<OfferEntity, Integer> {
+    boolean existsByName(String name);
+    List<OfferEntity> findAllById(Long id);
 }
