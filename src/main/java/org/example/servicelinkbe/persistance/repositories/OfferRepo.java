@@ -5,9 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface OfferRepo extends JpaRepository<OfferEntity, Integer> {
     boolean existsByName(String name);
     List<OfferEntity> findAllById(Long id);
+    Optional<OfferEntity> findById(Long id);
 }

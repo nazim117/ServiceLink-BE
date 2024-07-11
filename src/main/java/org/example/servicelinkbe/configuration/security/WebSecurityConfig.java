@@ -21,6 +21,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebSecurityConfig {
     private static final String USERS_ENDPOINT = "/api/users";
     private static final String SERVICES_ENDPOINT = "/api/services";
+    private static final String OFFERS_ENDPOINT  = "/api/offers";
+    private static final String APPOINTMENTS_ENDPOINT = "/api/appointments";
     private static final String[] SWAGGER_UI_RESOURCES = {
             "/v3/api-docs/**",
             "/swagger-resources/**",
@@ -38,10 +40,34 @@ public class WebSecurityConfig {
                         configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(registry ->
                         registry.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                                .requestMatchers(HttpMethod.POST, USERS_ENDPOINT, "/api/tokens","/api/tokens/register", SERVICES_ENDPOINT).permitAll()
-                                .requestMatchers(HttpMethod.GET, USERS_ENDPOINT, USERS_ENDPOINT+"/{id}", SERVICES_ENDPOINT, SERVICES_ENDPOINT+"/{id}").permitAll()
-                                .requestMatchers(HttpMethod.DELETE, USERS_ENDPOINT, SERVICES_ENDPOINT).permitAll()
-                                .requestMatchers(HttpMethod.PUT, USERS_ENDPOINT, SERVICES_ENDPOINT).permitAll()
+                                .requestMatchers(HttpMethod.POST,
+                                        USERS_ENDPOINT,
+                                        "/api/tokens",
+                                        "/api/tokens/register",
+                                        SERVICES_ENDPOINT,
+                                        SERVICES_ENDPOINT+"/{id}",
+                                        OFFERS_ENDPOINT,
+                                        OFFERS_ENDPOINT+"/{id}",
+                                        APPOINTMENTS_ENDPOINT,
+                                        APPOINTMENTS_ENDPOINT+"/{id}").permitAll()
+                                .requestMatchers(HttpMethod.GET,
+                                        USERS_ENDPOINT,
+                                        USERS_ENDPOINT+"/{id}",
+                                        SERVICES_ENDPOINT,
+                                        SERVICES_ENDPOINT+"/{id}",
+                                        OFFERS_ENDPOINT,
+                                        OFFERS_ENDPOINT+"/{id}",
+                                        APPOINTMENTS_ENDPOINT,
+                                        APPOINTMENTS_ENDPOINT+"/{id}")
+                                .permitAll()
+                                .requestMatchers(HttpMethod.DELETE,
+                                        USERS_ENDPOINT,
+                                        SERVICES_ENDPOINT)
+                                .permitAll()
+                                .requestMatchers(HttpMethod.PUT,
+                                        USERS_ENDPOINT,
+                                        SERVICES_ENDPOINT)
+                                .permitAll()
                                 .requestMatchers(SWAGGER_UI_RESOURCES).permitAll()
                                 .anyRequest().authenticated()
                 )

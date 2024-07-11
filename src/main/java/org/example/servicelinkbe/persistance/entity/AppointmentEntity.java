@@ -1,5 +1,6 @@
 package org.example.servicelinkbe.persistance.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -39,11 +40,41 @@ public class AppointmentEntity {
     @Column(name = "description")
     private String description;
 
+    @NotNull
+    @Column(name = "start_date")
+    private LocalDateTime startDate;
+
+    @NotNull
+    @Column(name = "end_date")
+    private LocalDateTime endDate;
+
+    @NotBlank
+    @Length(min = 2, max = 255)
+    @Column(name = "client_name")
+    private String clientName;
+
+    @NotBlank
+    @Length(min = 2, max = 255)
+    @Column(name = "client_email")
+    private String clientEmail;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "service_id")
+    @JsonIgnore
+    private ServiceProviderEntity service;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "offer_id")
+    @JsonIgnore
+    private OfferEntity offer;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
     private UserEntity user;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "service_provider_id")
+    @JsonIgnore
     private ServiceProviderEntity serviceProvider;
 }

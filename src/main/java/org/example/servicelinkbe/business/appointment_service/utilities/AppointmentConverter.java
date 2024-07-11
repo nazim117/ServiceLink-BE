@@ -9,8 +9,12 @@ public class AppointmentConverter {
     public static Appointment convert(AppointmentEntity appointmentEntity) {
         return Appointment.builder()
                 .id(appointmentEntity.getId())
-                .datetime(appointmentEntity.getCreatedAt())
+                .startDate(appointmentEntity.getStartDate())
+                .endDate(appointmentEntity.getEndDate())
                 .description(appointmentEntity.getDescription())
+                .clientEmail(appointmentEntity.getClientEmail())
+                .clientName(appointmentEntity.getClientName())
+                .offer(appointmentEntity.getOffer())
                 .build();
     }
 }
