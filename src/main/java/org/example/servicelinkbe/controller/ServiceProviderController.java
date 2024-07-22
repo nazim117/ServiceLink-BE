@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://servicelink-load-balancer-1683365512.eu-central-1.elb.amazonaws.com")
 @RestController
 @RequestMapping("/api/services")
 @AllArgsConstructor

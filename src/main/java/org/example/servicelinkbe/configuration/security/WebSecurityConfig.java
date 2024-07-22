@@ -38,39 +38,40 @@ public class WebSecurityConfig {
                 .formLogin(AbstractHttpConfigurer::disable)
                 .sessionManagement(configurer ->
                         configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(registry ->
-                        registry.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                                .requestMatchers(HttpMethod.POST,
-                                        USERS_ENDPOINT,
-                                        "/api/tokens",
-                                        "/api/tokens/register",
-                                        SERVICES_ENDPOINT,
-                                        SERVICES_ENDPOINT+"/{id}",
-                                        OFFERS_ENDPOINT,
-                                        OFFERS_ENDPOINT+"/{id}",
-                                        APPOINTMENTS_ENDPOINT,
-                                        APPOINTMENTS_ENDPOINT+"/{id}").permitAll()
-                                .requestMatchers(HttpMethod.GET,
-                                        USERS_ENDPOINT,
-                                        USERS_ENDPOINT+"/{id}",
-                                        SERVICES_ENDPOINT,
-                                        SERVICES_ENDPOINT+"/{id}",
-                                        OFFERS_ENDPOINT,
-                                        OFFERS_ENDPOINT+"/{id}",
-                                        APPOINTMENTS_ENDPOINT,
-                                        APPOINTMENTS_ENDPOINT+"/{id}")
-                                .permitAll()
-                                .requestMatchers(HttpMethod.DELETE,
-                                        USERS_ENDPOINT,
-                                        SERVICES_ENDPOINT)
-                                .permitAll()
-                                .requestMatchers(HttpMethod.PUT,
-                                        USERS_ENDPOINT,
-                                        SERVICES_ENDPOINT)
-                                .permitAll()
-                                .requestMatchers(SWAGGER_UI_RESOURCES).permitAll()
-                                .anyRequest().authenticated()
-                )
+                .authorizeHttpRequests(registry -> {
+                    registry.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
+                    registry.requestMatchers(HttpMethod.POST,
+                                    USERS_ENDPOINT,
+                                    "/api/tokens",
+                                    "/api/tokens/register",
+                                    SERVICES_ENDPOINT,
+                                    SERVICES_ENDPOINT+"/{id}",
+                                    OFFERS_ENDPOINT,
+                                    OFFERS_ENDPOINT+"/{id}",
+                                    APPOINTMENTS_ENDPOINT,
+                                    APPOINTMENTS_ENDPOINT+"/{id}").permitAll()
+                            .requestMatchers(HttpMethod.GET,
+                                    USERS_ENDPOINT,
+                                    USERS_ENDPOINT+"/{id}",
+                                    SERVICES_ENDPOINT,
+                                    SERVICES_ENDPOINT+"/{id}",
+                                    OFFERS_ENDPOINT,
+                                    OFFERS_ENDPOINT+"/{id}",
+                                    APPOINTMENTS_ENDPOINT,
+                                    APPOINTMENTS_ENDPOINT+"/{id}",
+                                    "/api/health")
+                            .permitAll()
+                            .requestMatchers(HttpMethod.DELETE,
+                                    USERS_ENDPOINT,
+                                    SERVICES_ENDPOINT)
+                            .permitAll()
+                            .requestMatchers(HttpMethod.PUT,
+                                    USERS_ENDPOINT,
+                                    SERVICES_ENDPOINT)
+                            .permitAll()
+                            .requestMatchers(SWAGGER_UI_RESOURCES).permitAll()
+                            .anyRequest().authenticated();
+                })
                 .exceptionHandling(configure -> configure.authenticationEntryPoint(authenticationEntryPoint))
                 .addFilterBefore(authenticationRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
@@ -81,10 +82,11 @@ public class WebSecurityConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
+                registry.addMapping("/api/**")
                         .allowedOrigins("*")
-                        .allowedMethods("*")
-                        .allowedHeaders("*");
+                        .allowedMethods("GET", "POST", "PUT", "DELETE")
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
             }
         };
     }

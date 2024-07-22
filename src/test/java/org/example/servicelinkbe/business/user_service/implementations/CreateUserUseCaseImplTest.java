@@ -71,7 +71,7 @@ class CreateUserUseCaseImplTest {
                 .role(RoleEnum.CLIENT)
                 .user(userEntity)
                 .build());
-        userEntity.setId(1l);
+        userEntity.setId(1L);
 
         CreateResponse response = createUserUseCase.createUser(request);
 
