@@ -34,12 +34,3 @@ jobs:
         with:
           name: Package
           path: build/libs
-
-        env:
-          SPRING_PROFILES_ACTIVE: staging
-          DB_HOST: ${{ vars.DB_HOST }}
-          DB_PORT: ${{ vars.DB_PORT }}
-          DB_NAME: ${{ vars.DB_NAME }}
-          DB_USER: ${{ vars.DB_USER }}
-          DB_PASS: ${{ secrets.DB_PASS }}
-          JWT_TOKEN: ${{ secrets.JWT_TOKEN }}
