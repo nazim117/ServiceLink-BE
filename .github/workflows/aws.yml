@@ -73,6 +73,12 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
+    - name: Download build artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: build-artifacts
+        path: build/libs
+
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
