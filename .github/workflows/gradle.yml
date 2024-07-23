@@ -1,5 +1,15 @@
 name: Java CI with Gradle
 
+env:
+  SPRING_PROFILES_ACTIVE: test
+  SPRING_DATASOURCE_URL: ${{ secrets.SPRING_DATASOURCE_URLv }}
+  SPRING_DATASOURCE_USERNAME: ${{ secrets.SPRING_DATASOURCE_USERNAME }}
+  SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+  SPRING_FLYWAY_URL: ${{ secrets.SPRING_FLYWAY_URL }}
+  SPRING_FLYWAY_USER: ${{ secrets.SPRING_FLYWAY_USER }}
+  SPRING_FLYWAY_PASSWORD: ${{ secrets.SPRING_FLYWAY_PASSWORD }}
+  JWT_TOKEN: ${{ secrets.JWT_TOKEN }}
+
 on:
   push:
     branches: ["main"]
@@ -28,19 +38,8 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: Package
           path: build/libs
-
-        env:
-          SPRING_PROFILES_ACTIVE: test
-          SPRING_DATASOURCE_URL: ${{ secrets.SPRING_DATASOURCE_URLv }}
-          SPRING_DATASOURCE_USERNAME: ${{ secrets.SPRING_DATASOURCE_USERNAME }}
-          SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
-          SPRING_FLYWAY_URL: ${{ secrets.SPRING_FLYWAY_URL }}
-          SPRING_FLYWAY_USER: ${{ secrets.SPRING_FLYWAY_USER }}
-          SPRING_FLYWAY_PASSWORD: ${{ secrets.SPRING_FLYWAY_PASSWORD }}
-          JWT_TOKEN: ${{ secrets.JWT_TOKEN }}
