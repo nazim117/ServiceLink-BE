@@ -31,10 +31,13 @@ hs_err_pid*
 replay_pid*
 
 # Ignore Gradle files and directories
-.gradle/
+.gradle
+
+!gradle/wrapper/gradle-wrapper.jar
 
 # Ignore build output directories
 build/
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
