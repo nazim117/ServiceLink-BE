@@ -127,7 +127,8 @@ jobs:
   deploy:
     name: Deploy to AWS
     runs-on: ubuntu-latest
-    environment: production
+    needs: docker
+    environment: staging
 
     steps:
       - name: Checkout
