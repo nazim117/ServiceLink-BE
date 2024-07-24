@@ -145,19 +145,16 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: Fetch the current task definition
-        id: get-task
         run: |
-          TASK_DEFINITION=$(aws ecs describe-task-definition --task-definition ${{ env.ECS_TASK_DEFINITION }} --query 'taskDefinition')
-          echo "TASK_DEFINITION_JSON=$TASK_DEFINITION" >> $GITHUB_ENV
+          aws ecs describe-task-definition --task-definition ${{ env.ECS_TASK_DEFINITION }} --query 'taskDefinition' > task-def.json
 
       - name: Update task definition with new environment variables and image
-        id: update-task-def
         run: |
-          NEW_TASK_DEF=$(echo $TASK_DEFINITION_JSON | jq --arg IMAGE_URI "${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}" '.containerDefinitions[0].image = $IMAGE_URI | .containerDefinitions[0].environment += [{"name":"JWT_TOKEN","value":"${{ secrets.JWT_TOKEN }}"},{"name":"DB_HOST","value":"${{ secrets.DB_HOST }}"},{"name":"DB_PORT","value":"${{ secrets.DB_PORT }}"},{"name":"DB_NAME","value":"${{ secrets.DB_NAME }}"},{"name":"DB_USER","value":"${{ secrets.DB_USER }}"},{"name":"DB_PASS","value":"${{ secrets.DB_PASS }}"}]')
+          NEW_TASK_DEF=$(jq --arg IMAGE_URI "${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}" '.containerDefinitions[0].image = $IMAGE_URI | .containerDefinitions[0].environment += [{"name":"JWT_TOKEN","value":"${{ secrets.JWT_TOKEN }}"},{"name":"DB_HOST","value":"${{ secrets.DB_HOST }}"},{"name":"DB_PORT","value":"${{ secrets.DB_PORT }}"},{"name":"DB_NAME","value":"${{ secrets.DB_NAME }}"},{"name":"DB_USER","value":"${{ secrets.DB_USER }}"},{"name":"DB_PASS","value":"${{ secrets.DB_PASS }}"}]' task-def.json)
           REGISTERED_DEF=$(aws ecs register-task-definition --cli-input-json "$NEW_TASK_DEF")
           NEW_REVISION=$(echo $REGISTERED_DEF | jq -r '.taskDefinition.taskDefinitionArn')
           echo "NEW_TASK_DEF_ARN=$NEW_REVISION" >> $GITHUB_ENV
 
       - name: Update ECS service to use new task definition
         run: |
-          aws ecs update-service --cluster ${{ env.ECS_CLUSTER }} --service ${{ env.ECS_SERVICE }} --task-definition ${{ env.NEW_TASK_DEF_ARN }} --force-new-deployment
+          aws ecs update-service --cluster ${{ env.ECS_CLUSTER }} --service ${{ env.ECS_SERVICE }} --task-definition $NEW_TASK_DEF_ARN --force-new-deployment
