@@ -145,23 +145,38 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
+      - name: Download build artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build-artifacts
+          path: build/libs
+
       - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker push ${{ steps.login-ecr.outputs.registry }}/servicelink-repo:$IMAGE_TAG
+          # Build a docker container and
+          # push it to ECR so that it can
+          # be deployed to ECS.
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: ${{ env.ECS_TASK_DEFINITION }}
           container-name: ${{ env.CONTAINER_NAME }}
-          image: ${{ steps.login-ecr.outputs.registry }}/servicelink-repo:$IMAGE_TAG
-          environment-variables: |
-            JWT_TOKEN=${{ secrets.JWT_TOKEN }}
-            DB_HOST=${{ secrets.DB_HOST }}
-            DB_PORT=${{ env.DB_PORT }}
-            DB_NAME=${{ env.DB_NAME }}
-            DB_USER=${{ env.DB_USER }}
-            DB_PASS=${{ secrets.DB_PASS }}
+          image: ${{ steps.build-image.outputs.image }}
+          environment-variables: >
+            JWT_TOKEN,${{ secrets.JWT_TOKEN }}
+            DB_HOST,${{ secrets.DB_HOST }}
+            DB_PORT,${{ vars.DB_PORT }}
+            DB_NAME,${{ vars.DB_NAME }}
+            DB_USER,${{ vars.DB_USER }}
+            DB_PASS,${{ secrets.DB_PASS }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
