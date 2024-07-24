@@ -142,19 +142,31 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Login to Amazon ECR
+        id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Fetch the current task definition
+      - name: Build, tag, and push image to Amazon ECR
         run: |
-          aws ecs describe-task-definition --task-definition ${{ env.ECS_TASK_DEFINITION }} --query 'taskDefinition' > task-def.json
+          docker push ${{ steps.login-ecr.outputs.registry }}/servicelink-repo:$IMAGE_TAG
 
-      - name: Update task definition with new environment variables and image
-        run: |
-          NEW_TASK_DEF=$(jq --arg IMAGE_URI "${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}" '.containerDefinitions[0].image = $IMAGE_URI | .containerDefinitions[0].environment += [{"name":"JWT_TOKEN","value":"${{ secrets.JWT_TOKEN }}"},{"name":"DB_HOST","value":"${{ secrets.DB_HOST }}"},{"name":"DB_PORT","value":"${{ secrets.DB_PORT }}"},{"name":"DB_NAME","value":"${{ secrets.DB_NAME }}"},{"name":"DB_USER","value":"${{ secrets.DB_USER }}"},{"name":"DB_PASS","value":"${{ secrets.DB_PASS }}"}]' task-def.json)
-          REGISTERED_DEF=$(aws ecs register-task-definition --cli-input-json "$NEW_TASK_DEF")
-          NEW_REVISION=$(echo $REGISTERED_DEF | jq -r '.taskDefinition.taskDefinitionArn')
-          echo "NEW_TASK_DEF_ARN=$NEW_REVISION" >> $GITHUB_ENV
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: ${{ env.ECS_TASK_DEFINITION }}
+          container-name: ${{ env.CONTAINER_NAME }}
+          image: ${{ steps.login-ecr.outputs.registry }}/servicelink-repo:$IMAGE_TAG
+          environment-variables: |
+            JWT_TOKEN=${{ secrets.JWT_TOKEN }}
+            DB_HOST=${{ secrets.DB_HOST }}
+            DB_PORT=${{ env.DB_PORT }}
+            DB_NAME=${{ env.DB_NAME }}
+            DB_USER=${{ env.DB_USER }}
+            DB_PASS=${{ secrets.DB_PASS }}
 
-      - name: Update ECS service to use new task definition
-        run: |
-          aws ecs update-service --cluster ${{ env.ECS_CLUSTER }} --service ${{ env.ECS_SERVICE }} --task-definition $NEW_TASK_DEF_ARN --force-new-deployment
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE }}
+          cluster: ${{ env.ECS_CLUSTER }}
+          wait-for-service-stability: true
