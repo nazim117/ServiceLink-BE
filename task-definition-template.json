@@ -1,0 +1,30 @@
+{
+  "family": "servicelink-be-task-definition",
+  "networkMode": "awsvpc",
+  "containerDefinitions": [
+    {
+      "name": "my-container",
+      "image": "{{image}}",
+      "cpu": 256,
+      "memory": 512,
+      "essential": true,
+      "environment": [
+        {"name": "JWT_TOKEN", "value": "{{JWT_TOKEN}}"},
+        {"name": "DB_HOST", "value": "{{DB_HOST}}"},
+        {"name": "DB_PORT", "value": "{{DB_PORT}}"},
+        {"name": "DB_NAME", "value": "{{DB_NAME}}"},
+        {"name": "DB_USER", "value": "{{DB_USER}}"},
+        {"name": "DB_PASS", "value": "{{DB_PASS}}"}
+      ],
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 8080
+        }
+      ]
+    }
+  ],
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512"
+}
