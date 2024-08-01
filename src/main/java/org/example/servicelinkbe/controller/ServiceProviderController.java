@@ -13,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://servicelink-load-balancer-1683365512.eu-central-1.elb.amazonaws.com")
 @RestController
 @RequestMapping("/api/services")
 @AllArgsConstructor
@@ -38,7 +37,7 @@ public class ServiceProviderController {
                 return  ResponseEntity.notFound().build();
             }
         } catch (Exception e) {
-            return ResponseEntity.status(401).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         return ResponseEntity.ok().body(serviceProvider);
     }
@@ -56,7 +55,7 @@ public class ServiceProviderController {
         try {
             updateServiceProviderUseCase.update(request);
         } catch (Exception e) {
-            return ResponseEntity.status(401).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         return ResponseEntity.noContent().build();
     }
@@ -66,9 +65,10 @@ public class ServiceProviderController {
         try {
             deleteServiceProviderUseCase.delete(id);
             return ResponseEntity.noContent().build();
-
         }catch (EntityNotFoundException e){
             return ResponseEntity.notFound().build();
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 }
