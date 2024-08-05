@@ -92,8 +92,7 @@ public class WebSecurityConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**")
                         .allowedOriginPatterns(
-                                "http://localhost:8080",t status
-
+                                "http://localhost:8080",
                                 "http://localhost:80",
                                 "http://localhost:3000",
                                 "https://quickserveapp.com",
