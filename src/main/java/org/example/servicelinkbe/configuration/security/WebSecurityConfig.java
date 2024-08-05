@@ -36,7 +36,6 @@ public class WebSecurityConfig {
                                            AuthenticationEntryPoint authenticationEntryPoint,
                                            AuthenticationRequestFilter authenticationRequestFilter) throws Exception {
         httpSecurity
-                .cors(withDefaults())
                 .headers(headers -> headers
                         .httpStrictTransportSecurity(hsts -> hsts.includeSubDomains(true).maxAgeInSeconds(31536000))
                         .frameOptions(frame -> frame.deny())
@@ -92,14 +91,15 @@ public class WebSecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**")
-                        .allowedOrigins(
-                                "http://localhost:8080",
+                        .allowedOriginPatterns(
+                                "http://localhost:8080",t status
+
+                                "http://localhost:80",
                                 "http://localhost:3000",
                                 "https://quickserveapp.com",
-                                "https://api.quickserveapp.com"
-                        )
+                                "https://api.quickserveapp.com")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        .allowedHeaders("*")
+                        .allowedHeaders("Content-Type", "Authorization", "X-Requested-With")
                         .allowCredentials(true);
             }
         };
