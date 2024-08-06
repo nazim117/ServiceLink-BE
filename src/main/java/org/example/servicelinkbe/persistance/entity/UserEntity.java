@@ -46,4 +46,8 @@ public class UserEntity {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private Set<UserRoleEntity> userRoles;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
+    @JsonIgnore
+    private ServiceProviderEntity serviceProvider;
 }

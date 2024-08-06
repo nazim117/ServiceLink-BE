@@ -98,7 +98,15 @@ public class WebSecurityConfig {
                                 "https://quickserveapp.com",
                                 "https://api.quickserveapp.com")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        .allowedHeaders("Content-Type", "Authorization", "X-Requested-With")
+                        .allowedHeaders(
+                                "Access-Control-Allow-Headers",
+                                "Access-Control-Allow-Origin",
+                                "Origin",
+                                "Accept",
+                                "Content-Type",
+                                "Authorization",
+                                "X-Requested-With"
+                        )
                         .allowCredentials(true);
             }
         };

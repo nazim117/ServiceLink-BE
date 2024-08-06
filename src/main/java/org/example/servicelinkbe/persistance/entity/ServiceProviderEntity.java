@@ -41,6 +41,10 @@ public class ServiceProviderEntity {
     @Column(name = "image_path")
     private String imagePath;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+
     @OneToMany(mappedBy = "serviceProvider", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<OfferEntity> offers;
