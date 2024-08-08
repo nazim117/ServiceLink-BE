@@ -42,6 +42,20 @@ public class ServiceProviderController {
         return ResponseEntity.ok().body(serviceProvider);
     }
 
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<ServiceProvider> getProvisionByUserId(@PathVariable(value = "userId") final Long userId){
+        ServiceProvider serviceProvider = null;
+        try {
+            serviceProvider = getSingleServiceProviderUseCase.getByUserId(userId);
+            if(serviceProvider == null){
+                return  ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        return ResponseEntity.ok().body(serviceProvider);
+    }
+
     @PostMapping
     public ResponseEntity<CreateResponse> createProvision(@Valid @RequestBody CreateServiceProviderRequest request){
         CreateResponse response = createServiceProviderUseCase.create(request);

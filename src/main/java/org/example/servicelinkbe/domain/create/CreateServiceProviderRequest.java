@@ -1,7 +1,7 @@
 package org.example.servicelinkbe.domain.create;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,4 +19,6 @@ public class CreateServiceProviderRequest {
     private String imagePath;
     @NotBlank
     private String description;
+    @NotNull
+    private Long userId;
 }

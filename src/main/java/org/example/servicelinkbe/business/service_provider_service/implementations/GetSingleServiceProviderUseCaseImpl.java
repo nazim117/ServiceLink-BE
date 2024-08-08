@@ -24,4 +24,16 @@ public class GetSingleServiceProviderUseCaseImpl implements GetSingleServiceProv
 
         return ProvisionConverter.convert(serviceProviderEntity);
     }
+
+    @Transactional
+    @Override
+    public ServiceProvider getByUserId(Long userId) {
+        ServiceProviderEntity serviceProviderEntity = provisionRepo.findByUserId(userId).orElse(null);
+
+        if (serviceProviderEntity == null) {
+            throw new EntityNotFoundException("Service not found");
+        }
+
+        return ProvisionConverter.convert(serviceProviderEntity);
+    }
 }

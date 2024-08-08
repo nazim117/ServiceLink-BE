@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface ProvisionRepo extends JpaRepository<ServiceProviderEntity, Integer> {
     Optional<ServiceProviderEntity> findById(Long id);
+    Optional<ServiceProviderEntity> findByUserId(Long id);
 }

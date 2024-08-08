@@ -10,6 +10,7 @@ import org.example.servicelinkbe.domain.get.GetAllOffersResponse;
 import org.example.servicelinkbe.persistance.repositories.OfferRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,7 +27,10 @@ public class GetOffersUseCaseImpl implements GetOffersUseCase {
                 .toList();
 
         if (offers.isEmpty()) {
-            throw new EntityNotFoundException("No offers found");
+            return GetAllOffersResponse
+                    .builder()
+                    .offers(new ArrayList<>())
+                    .build();
         }
 
         return GetAllOffersResponse

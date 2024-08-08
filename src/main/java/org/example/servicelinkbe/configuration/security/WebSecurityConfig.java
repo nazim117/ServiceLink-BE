@@ -15,8 +15,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
 @EnableWebSecurity
 @EnableMethodSecurity(jsr250Enabled = true)
 @Configuration
@@ -63,6 +61,7 @@ public class WebSecurityConfig {
                                     USERS_ENDPOINT+"/{id}",
                                     SERVICES_ENDPOINT,
                                     SERVICES_ENDPOINT+"/{id}",
+                                    SERVICES_ENDPOINT+"/user/{id}",
                                     OFFERS_ENDPOINT,
                                     OFFERS_ENDPOINT+"/{id}",
                                     APPOINTMENTS_ENDPOINT,
