@@ -151,7 +151,7 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with:
           task-definition: quickserve-be-task-definition-revision11.json
-          service: my-ecs-service
-          cluster: my-ecs-cluster
-          container-name: my-container
+          service: quickserve-be-service
+          cluster: servicelink-cluster
+          container-name: servicelink-be-container
           image: "${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY_NAME }}:${{ env.IMAGE_TAG }}"
