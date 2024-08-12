@@ -106,20 +106,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Download build artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: build-artifacts
-          path: build/libs
-
-      - name: Log in to Amazon ECR
-        id: ecr-login
-        uses: aws-actions/amazon-ecr-login@v2
+      # Step 1: Configure AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
+      # Step 2: Log in to Amazon ECR
+      - name: Log in to Amazon ECR
+        id: ecr-login
+        uses: aws-actions/amazon-ecr-login@v2
+
+      # Step 3: Build Docker image
       - name: Build Docker image
         id: build-image
         run: |
@@ -127,19 +127,22 @@ jobs:
           docker build . --file Dockerfile --tag ${{ env.ECR_REPOSITORY_NAME }}:$IMAGE_TAG
           echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
 
+      # Step 4: Tag Docker image
       - name: Tag Docker image
         run: |
           docker tag ${{ env.ECR_REPOSITORY_NAME }}:${{ env.IMAGE_TAG }} ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY_NAME }}:${{ env.IMAGE_TAG }}
 
+      # Step 5: Push Docker image to Amazon ECR
       - name: Push Docker image to Amazon ECR
         run: |
           docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY_NAME }}:${{ env.IMAGE_TAG }}
 
+      # Step 6: Deploy to Amazon ECS
       - name: Deploy to Amazon ECS
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with:
-          task-definition: quickserve-be-task-definition:11
-          service: quickserve-be-service  # Replace with your ECS service name
-          cluster: servicelink-cluster  # Replace with your ECS cluster name
-          container-name: servicelink-be-container  # Replace with your container name in the task definition
+          task-definition: ecs-task-definition.json
+          service: my-ecs-service
+          cluster: my-ecs-cluster
+          container-name: my-container
           image: "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY_NAME }}:${{ env.IMAGE_TAG }}"
