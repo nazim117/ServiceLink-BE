@@ -8,21 +8,13 @@ env:
   SPRING_FLYWAY_USER: ${{ secrets.SPRING_FLYWAY_USER }}
   SPRING_FLYWAY_PASSWORD: ${{ secrets.SPRING_FLYWAY_PASSWORD }}
   JWT_TOKEN: ${{ secrets.JWT_TOKEN }}
-
-  AWS_REGION: eu-central-1                   # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: servicelink-repo           # set this to your Amazon ECR repository name
-  ECS_SERVICE: servicelink-be-service                 # set this to your Amazon ECS service name
-  ECS_CLUSTER: servicelink-cluster                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: servicelink-be-task-definition # set this to the path to your Amazon ECS task definition
-  # file, e.g .aws/task-definition.json
-  CONTAINER_NAME: servicelink-be-container           # set this to the name of the container in the
-  # containerDefinitions section of your task definition
-
   DB_HOST: ${{ secrets.DB_HOST }}
   DB_PORT: ${{ secrets.DB_PORT }}
   DB_NAME: ${{ secrets.DB_NAME }}
   DB_USER: ${{ secrets.DB_USER }}
   DB_PASS: ${{ secrets.DB_PASS }}
+  AWS_REGION: eu-central-1
+  ECR_REPOSITORY_NAME: servicelink-repo
 
 on:
   push:
@@ -120,6 +112,30 @@ jobs:
           name: build-artifacts
           path: build/libs
 
+      - name: Log in to Amazon ECR
+        id: ecr-login
+        uses: aws-actions/amazon-ecr-login@v2
+
       - name: Build Docker image
+        id: build-image
         run: |
-          docker build . --file Dockerfile --tag servicelink-backend:$(date +%s)
+          IMAGE_TAG=$(date +%s)
+          docker build . --file Dockerfile --tag ${{ env.ECR_REPOSITORY_NAME }}:$IMAGE_TAG
+          echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
+
+      - name: Tag Docker image
+        run: |
+          docker tag ${{ env.ECR_REPOSITORY_NAME }}:${{ env.IMAGE_TAG }} ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY_NAME }}:${{ env.IMAGE_TAG }}
+
+      - name: Push Docker image to Amazon ECR
+        run: |
+          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY_NAME }}:${{ env.IMAGE_TAG }}
+
+      - name: Deploy to Amazon ECS
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+        with:
+          task-definition: quickserve-be-task-definition:11
+          service: quickserve-be-service  # Replace with your ECS service name
+          cluster: servicelink-cluster  # Replace with your ECS cluster name
+          container-name: servicelink-be-container  # Replace with your container name in the task definition
+          image: "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY_NAME }}:${{ env.IMAGE_TAG }}"

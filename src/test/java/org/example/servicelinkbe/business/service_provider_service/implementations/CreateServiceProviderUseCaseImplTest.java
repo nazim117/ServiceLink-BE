@@ -7,6 +7,7 @@ import org.example.servicelinkbe.domain.create.CreateResponse;
 import org.example.servicelinkbe.persistance.entity.ServiceProviderEntity;
 import org.example.servicelinkbe.persistance.repositories.AddressRepo;
 import org.example.servicelinkbe.persistance.repositories.ProvisionRepo;
+import org.example.servicelinkbe.persistance.repositories.UserRepo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -24,6 +25,8 @@ class CreateServiceProviderUseCaseImplTest {
     private ProvisionRepo provisionRepo;
     @Mock
     private AddressRepo addressRepo;
+    @Mock
+    private UserRepo userRepo;
     @InjectMocks
     private CreateServiceProviderUseCaseImpl createProvisionUseCase;
     @BeforeEach
