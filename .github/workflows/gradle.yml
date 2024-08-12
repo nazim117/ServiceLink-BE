@@ -144,7 +144,7 @@ jobs:
         # Step 6: Push Docker image to Amazon ECR
       - name: Push Docker image to Amazon ECR
         run: |
-          docker push ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY_NAME }}:${{ github.env.IMAGE_TAG }}
+          docker push ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY_NAME }}:${{ env.IMAGE_TAG }}
 
       # Step 7: Deploy to Amazon ECS
       - name: Deploy to Amazon ECS
@@ -154,4 +154,4 @@ jobs:
           service: my-ecs-service
           cluster: my-ecs-cluster
           container-name: my-container
-          image: "${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY_NAME }}:${{ github.env.IMAGE_TAG }}"
+          image: "${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY_NAME }}:${{ env.IMAGE_TAG }}"
