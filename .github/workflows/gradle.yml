@@ -150,7 +150,7 @@ jobs:
       - name: Deploy to Amazon ECS
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with:
-          task-definition: ecs-task-definition.json
+          task-definition: quickserve-be-task-definition-revision11.json
           service: my-ecs-service
           cluster: my-ecs-cluster
           container-name: my-container
