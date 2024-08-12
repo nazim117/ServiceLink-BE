@@ -113,7 +113,6 @@ jobs:
           name: build-artifacts
           path: build/libs
 
-
       # Step 2: Configure AWS Credentials
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
@@ -143,7 +142,7 @@ jobs:
       # Step 6: Push Docker image to Amazon ECR
       - name: Push Docker image to Amazon ECR
         run: |
-          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY_NAME }}:${{ env.IMAGE_TAG }}
+          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY_NAME }}:${{ github.env.IMAGE_TAG }}
 
       # Step 7: Deploy to Amazon ECS
       - name: Deploy to Amazon ECS
@@ -153,4 +152,4 @@ jobs:
           service: my-ecs-service
           cluster: my-ecs-cluster
           container-name: my-container
-          image: "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY_NAME }}:${{ env.IMAGE_TAG }}"
+          image: "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY_NAME }}:${{ github.env.IMAGE_TAG }}"
