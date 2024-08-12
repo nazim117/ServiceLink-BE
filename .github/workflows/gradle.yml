@@ -1,4 +1,4 @@
-name: Java CI with Gradle
+name: Java CI/CD
 
 env:
   SPRING_DATASOURCE_URL: ${{ secrets.SPRING_DATASOURCE_URL }}
@@ -124,8 +124,8 @@ jobs:
         id: build-image
         run: |
           IMAGE_TAG=$(date +%s)
-          docker build . --file Dockerfile --tag ${{ env.ECR_REPOSITORY_NAME }}:$IMAGE_TAG
           echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
+          docker build . --file Dockerfile --tag ${{ env.ECR_REPOSITORY_NAME }}:$IMAGE_TAG
 
       # Step 4: Tag Docker image
       - name: Tag Docker image
