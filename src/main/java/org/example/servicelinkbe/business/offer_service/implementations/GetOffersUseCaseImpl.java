@@ -21,7 +21,7 @@ public class GetOffersUseCaseImpl implements GetOffersUseCase {
     @Transactional
     @Override
     public GetAllOffersResponse get(Long id) {
-        List<Offer> offers = offerRepo.findAllById(id)
+        List<Offer> offers = offerRepo.findAllByServiceProvider_Id(id)
                 .stream()
                 .map(OfferConverter::convert)
                 .toList();

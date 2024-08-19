@@ -39,6 +39,4 @@ public class Appointment {
     private OfferEntity offer;
 
     private UserEntity user;
-
-    private ServiceProviderEntity serviceProvider;
 }

@@ -36,13 +36,18 @@ public class LoginController {
     @PostMapping("/register")
     public ResponseEntity<TokenResponse> register(@RequestBody @Valid RegisterRequest registerRequest){
         try{
+            System.out.println("Received register request: " + registerRequest); // Log incoming request
             TokenResponse registerResponse = loginUseCase.register(registerRequest);
             if(registerResponse != null){
                 return ResponseEntity.status(HttpStatus.CREATED).body(registerResponse);
+            } else {
+                System.out.println("Registration failed"); // Log failure
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
             }
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }catch (Exception e){
+        } catch (Exception e){
+            System.err.println("Error during registration: " + e.getMessage()); // Log exceptions
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
+
 }

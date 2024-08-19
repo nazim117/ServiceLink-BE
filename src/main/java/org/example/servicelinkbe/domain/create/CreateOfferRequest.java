@@ -1,15 +1,11 @@
 package org.example.servicelinkbe.domain.create;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.servicelinkbe.persistance.entity.ServiceProviderEntity;
-import org.example.servicelinkbe.utilities.DurationToLongConverter;
-import org.hibernate.validator.constraints.Length;
 
 import java.math.BigDecimal;
 import java.time.Duration;
@@ -30,5 +26,5 @@ public class CreateOfferRequest {
     @NotNull
     private BigDecimal price;
     @NotNull
-    private Long serviceProviderId;
+    private Long serviceId;
 }

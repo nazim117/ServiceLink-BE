@@ -11,5 +11,6 @@ import java.util.Optional;
 public interface OfferRepo extends JpaRepository<OfferEntity, Integer> {
     boolean existsByName(String name);
     List<OfferEntity> findAllById(Long id);
+    List<OfferEntity> findAllByServiceProvider_Id(Long id);
     Optional<OfferEntity> findById(Long id);
 }

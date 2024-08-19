@@ -25,9 +25,9 @@ public class AppointmentController {
     private final DeleteAppointmentUseCase deleteAppointmentUseCase;
     private final UpdateAppointmentUseCase updateAppointmentUseCase;
 
-    @GetMapping
-    public ResponseEntity<GetAllAppointmentsResponse> getAppointments() throws EntityNotFoundException{
-        return ResponseEntity.ok(getAppointmentsUseCase.get());
+    @GetMapping("/serviceId/{serviceId}")
+    public ResponseEntity<GetAllAppointmentsResponse> getAppointments(@PathVariable(value = "serviceId") final Long serviceId) throws EntityNotFoundException{
+        return ResponseEntity.ok(getAppointmentsUseCase.get(serviceId));
     }
 
     @GetMapping("{id}")

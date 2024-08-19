@@ -27,7 +27,7 @@ public class CreateOfferUseCaseImpl implements CreateOfferUseCase {
             throw new EntityExistsException("Offer already exists with this name");
         }
 
-        ServiceProviderEntity serviceProvider = provisionRepo.findById(request.getServiceProviderId()).orElse(null);
+        ServiceProviderEntity serviceProvider = provisionRepo.findById(request.getServiceId()).orElse(null);
 
         if(serviceProvider == null){
             throw new EntityNotFoundException("Service provider not found");

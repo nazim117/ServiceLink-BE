@@ -64,7 +64,7 @@ public class WebSecurityConfig {
                                     SERVICES_ENDPOINT+"/user/{id}",
                                     OFFERS_ENDPOINT,
                                     OFFERS_ENDPOINT+"/{id}",
-                                    APPOINTMENTS_ENDPOINT,
+                                    APPOINTMENTS_ENDPOINT+"/serviceId/{serviceId}",
                                     APPOINTMENTS_ENDPOINT+"/{id}",
                                     "/api/health")
                             .permitAll()

@@ -10,6 +10,7 @@ import org.example.servicelinkbe.domain.get.GetAllAppointmentsResponse;
 import org.example.servicelinkbe.persistance.repositories.AppointmentRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,14 +19,14 @@ public class GetAppointmentsUseCaseImpl implements GetAppointmentsUseCase {
     private final AppointmentRepo appointmentRepo;
     @Transactional
     @Override
-    public GetAllAppointmentsResponse get() {
-        List<Appointment> appointments = appointmentRepo.findAll()
+    public GetAllAppointmentsResponse get(Long serviceId) {
+        List<Appointment> appointments = appointmentRepo.findAllByServiceProvider_Id(serviceId)
                 .stream()
                 .map(AppointmentConverter::convert)
                 .toList();
 
         if (appointments.isEmpty()) {
-            throw new EntityNotFoundException("No appointments found");
+            appointments = new ArrayList<>();
         }
 
         return GetAllAppointmentsResponse
