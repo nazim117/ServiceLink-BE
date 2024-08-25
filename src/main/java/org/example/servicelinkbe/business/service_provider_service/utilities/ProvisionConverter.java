@@ -11,6 +11,7 @@ public class ProvisionConverter {
                 .id(provision.getId())
                 .name(provision.getName())
                 .address(AddressConverter.convert(provision.getAddress()))
+                .imageFile(provision.getImagePath())
                 .description(provision.getDescription())
                 .build();
     }

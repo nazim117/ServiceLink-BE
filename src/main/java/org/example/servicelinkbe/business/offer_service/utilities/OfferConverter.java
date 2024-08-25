@@ -12,6 +12,7 @@ public class OfferConverter {
                 .name(offerEntity.getName())
                 .description(offerEntity.getDescription())
                 .price(offerEntity.getPrice())
+                .imageFile(offerEntity.getImagePath())
                 .duration(offerEntity.getDuration())
                 .build();
     }

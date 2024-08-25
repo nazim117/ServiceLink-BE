@@ -14,7 +14,7 @@ public class ServiceProvider {
     private Long id;
     private String name;
     private Address address;
-    private String imagePath;
+    private String imageFile;
     private String description;
     private List<Offer> offers;
 }

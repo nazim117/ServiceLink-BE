@@ -17,6 +17,6 @@ public class Offer {
     private String name;
     private Duration duration;
     private String description;
-    private String imagePath;
+    private String imageFile;
     private BigDecimal price;
 }
