@@ -11,6 +11,6 @@ import java.util.Optional;
 @Repository
 public interface AppointmentRepo extends JpaRepository<AppointmentEntity, Integer> {
     Optional<AppointmentEntity> findById(Long appointmentId);
-    List<AppointmentEntity> findAllByServiceProvider_Id(Long serviceId);
+    List<AppointmentEntity> findAllByService_Id(Long serviceId);
     boolean existsByCreatedAt(LocalDateTime createdAt);
 }

@@ -20,7 +20,7 @@ public class GetAppointmentsUseCaseImpl implements GetAppointmentsUseCase {
     @Transactional
     @Override
     public GetAllAppointmentsResponse get(Long serviceId) {
-        List<Appointment> appointments = appointmentRepo.findAllByServiceProvider_Id(serviceId)
+        List<Appointment> appointments = appointmentRepo.findAllByService_Id(serviceId)
                 .stream()
                 .map(AppointmentConverter::convert)
                 .toList();
