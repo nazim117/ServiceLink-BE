@@ -10,10 +10,10 @@ env:
   JWT_TOKEN: ${{ secrets.JWT_TOKEN }}
   DB_HOST: ${{ secrets.DB_HOST }}
   DB_PASS: ${{ secrets.DB_PASS }}
-  DB_PORT: ${{ env.DB_PORT }}
-  DB_NAME: ${{ env.DB_NAME }}
-  DB_USER: ${{ env.DB_USER }}
-  STORAGE_TYPE: ${{ env.STORAGE_TYPE }}
+  DB_PORT: ${{ vars.DB_PORT }}
+  DB_NAME: ${{ vars.DB_NAME }}
+  DB_USER: ${{ vars.DB_USER }}
+  STORAGE_TYPE: ${{ vars.STORAGE_TYPE }}
   FILE_STORAGE_LOCATION: ${{ secrets.FILE_STORAGE_LOCATION }}
   AWS_REGION: eu-central-1
   ECR_REPOSITORY_NAME: servicelink-repo
