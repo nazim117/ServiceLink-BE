@@ -44,7 +44,7 @@ class GetAppointmentsUseCaseImplTest {
         Appointment appointment1 = Appointment.builder().description("test desc1").offer(OfferEntity.builder().name("test name1").build()).build();
         Appointment appointment2 = Appointment.builder().description("test desc2").offer(OfferEntity.builder().name("test name2").build()).build();
 
-        when(appointmentRepo.findAllByServiceProvider_Id(serviceId)).thenReturn(entities);
+        when(appointmentRepo.findAllByService_Id(serviceId)).thenReturn(entities);
 
         // Act
         GetAllAppointmentsResponse response = getAppointmentsUseCase.get(serviceId);
@@ -52,7 +52,7 @@ class GetAppointmentsUseCaseImplTest {
         // Assert
         assertEquals(2, response.getAppointments().size());
         assertEquals(List.of(appointment1, appointment2), response.getAppointments());
-        verify(appointmentRepo).findAllByServiceProvider_Id(serviceId);
+        verify(appointmentRepo).findAllByService_Id(serviceId);
     }
 
 }
