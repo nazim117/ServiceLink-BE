@@ -68,13 +68,4 @@ public class AppointmentEntity {
     @JsonIgnore
     private OfferEntity offer;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    @JsonIgnore
-    private UserEntity user;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "service_provider_id")
-    @JsonIgnore
-    private ServiceProviderEntity serviceProvider;
 }

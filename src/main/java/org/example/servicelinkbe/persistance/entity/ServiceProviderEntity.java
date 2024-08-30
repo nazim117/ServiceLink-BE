@@ -49,7 +49,7 @@ public class ServiceProviderEntity {
     @JsonIgnore
     private List<OfferEntity> offers;
 
-    @OneToMany(mappedBy = "serviceProvider", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "service", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<AppointmentEntity> appointments;
 }

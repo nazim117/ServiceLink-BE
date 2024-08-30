@@ -1,6 +1,5 @@
 package org.example.servicelinkbe.controller;
 
-import jakarta.annotation.security.RolesAllowed;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
