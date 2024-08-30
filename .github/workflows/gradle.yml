@@ -9,10 +9,12 @@ env:
   SPRING_FLYWAY_PASSWORD: ${{ secrets.SPRING_FLYWAY_PASSWORD }}
   JWT_TOKEN: ${{ secrets.JWT_TOKEN }}
   DB_HOST: ${{ secrets.DB_HOST }}
-  DB_PORT: ${{ secrets.DB_PORT }}
-  DB_NAME: ${{ secrets.DB_NAME }}
-  DB_USER: ${{ secrets.DB_USER }}
   DB_PASS: ${{ secrets.DB_PASS }}
+  DB_PORT: ${{ env.DB_PORT }}
+  DB_NAME: ${{ env.DB_NAME }}
+  DB_USER: ${{ env.DB_USER }}
+  STORAGE_TYPE: ${{ env.STORAGE_TYPE }}
+  FILE_STORAGE_LOCATION: ${{ secrets.FILE_STORAGE_LOCATION }}
   AWS_REGION: eu-central-1
   ECR_REPOSITORY_NAME: servicelink-repo
   AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
