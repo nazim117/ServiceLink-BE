@@ -1,12 +1,11 @@
 package org.example.servicelinkbe.business.service_provider_service.implementations;
 
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.example.servicelinkbe.business.service_provider_service.exceptions.ServiceProviderNotFoundException;
 import org.example.servicelinkbe.business.service_provider_service.interfaces.GetSingleServiceProviderUseCase;
 import org.example.servicelinkbe.business.service_provider_service.utilities.ProvisionConverter;
 import org.example.servicelinkbe.domain.ServiceProvider;
-import org.example.servicelinkbe.persistance.entity.ServiceProviderEntity;
 import org.example.servicelinkbe.persistance.repositories.ProvisionRepo;
 import org.springframework.stereotype.Service;
 
@@ -17,23 +16,16 @@ public class GetSingleServiceProviderUseCaseImpl implements GetSingleServiceProv
     @Transactional
     @Override
     public ServiceProvider get(Long id) {
-        ServiceProviderEntity serviceProviderEntity = provisionRepo.findById(id).orElse(null);
-        if (serviceProviderEntity == null) {
-            throw new EntityNotFoundException("Service not found");
-        }
-
-        return ProvisionConverter.convert(serviceProviderEntity);
+        return provisionRepo.findById(id)
+                .map(ProvisionConverter::convert)
+                .orElseThrow(() -> new ServiceProviderNotFoundException(id));
     }
 
     @Transactional
     @Override
     public ServiceProvider getByUserId(Long userId) {
-        ServiceProviderEntity serviceProviderEntity = provisionRepo.findByUserId(userId).orElse(null);
-
-        if (serviceProviderEntity == null) {
-            throw new EntityNotFoundException("Service not found");
-        }
-
-        return ProvisionConverter.convert(serviceProviderEntity);
+        return provisionRepo.findByUserId(userId)
+                .map(ProvisionConverter::convert)
+                .orElseThrow(() -> new ServiceProviderNotFoundException(userId));
     }
 }

@@ -3,6 +3,7 @@ package org.example.servicelinkbe.controller;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.example.servicelinkbe.business.service_provider_service.exceptions.ServiceProviderNotFoundException;
 import org.example.servicelinkbe.business.service_provider_service.interfaces.*;
 import org.example.servicelinkbe.domain.create.CreateAddressRequest;
 import org.example.servicelinkbe.domain.get.GetAllProvisionsResponse;
@@ -15,8 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/services")
@@ -53,9 +52,8 @@ public class ServiceProviderController {
         ServiceProvider serviceProvider = null;
         try {
             serviceProvider = getSingleServiceProviderUseCase.getByUserId(userId);
-            if(serviceProvider == null){
-                return  ResponseEntity.notFound().build();
-            }
+        } catch (ServiceProviderNotFoundException e) {
+            return ResponseEntity.notFound().build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
@@ -92,7 +90,9 @@ public class ServiceProviderController {
 
             CreateResponse response = createServiceProviderUseCase.create(request);
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
-        }catch (Exception e){
+        }catch (ServiceProviderNotFoundException e){
+            return ResponseEntity.notFound().build();
+        }catch(Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
