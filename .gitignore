@@ -1,6 +1,10 @@
 # Compiled class file
 *.class
 
+#Task definition
+quickserve-be-task-definition-revision22.json
+logback.xml
+
 ## JWT generator ###
 src/main/java/org/example/servicelinkbe/utilities/JwtUtil.java
 

@@ -2,6 +2,7 @@ package org.example.servicelinkbe.business.service_provider_service.implementati
 
 import jakarta.persistence.EntityNotFoundException;
 import org.example.servicelinkbe.TestConfig;
+import org.example.servicelinkbe.business.service_provider_service.exceptions.ServiceProviderNotFoundException;
 import org.example.servicelinkbe.domain.ServiceProvider;
 import org.example.servicelinkbe.persistance.entity.AddressEntity;
 import org.example.servicelinkbe.persistance.entity.ServiceProviderEntity;
@@ -51,11 +52,11 @@ class GetSingleServiceProviderUseCaseImplTest {
     void testGetNotFound() {
         when(provisionRepo.findById(1L)).thenReturn(java.util.Optional.empty());
 
-        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> {
+        ServiceProviderNotFoundException exception = assertThrows(ServiceProviderNotFoundException.class, () -> {
             getSingleProvisionUseCase.get(1L);
         });
 
-        assertEquals("Service not found", exception.getMessage());
+        assertEquals("Service provider with ID 1 not found", exception.getMessage());
         verify(provisionRepo, times(1)).findById(1L);
     }
 }

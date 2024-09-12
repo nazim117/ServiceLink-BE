@@ -70,6 +70,7 @@ public class ServiceProviderController {
                                                           @RequestParam("postalCode") String postalCode,
                                                           @RequestParam("country") String country){
         try{
+            System.out.println("Received file: " + imageFile.getOriginalFilename());
             Long userId = Long.parseLong(userIdStr);
             String imagePath = fileStorageService.saveImage(imageFile);
 

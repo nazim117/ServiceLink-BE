@@ -37,7 +37,7 @@ public class OfferEntity {
     private Duration duration;
 
     @NotBlank
-    @Length(min = 2, max = 50)
+    @Length(min = 2, max = 255)
     @Column(name = "description")
     private String description;
 

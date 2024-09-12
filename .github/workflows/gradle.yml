@@ -152,7 +152,7 @@ jobs:
       - name: Deploy to Amazon ECS
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with:
-          task-definition: quickserve-be-task-definition-revision11.json
+          task-definition: quickserve-be-task-definition-revision22.json
           service: quickserve-be-service
           cluster: servicelink-cluster
           container-name: servicelink-be-container
