@@ -7,6 +7,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.servicelinkbe.business.offer_service.interfaces.CreateOfferUseCase;
 import org.example.servicelinkbe.business.offer_service.interfaces.GetOffersUseCase;
+import org.example.servicelinkbe.business.offer_service.interfaces.GetSingleOfferUseCase;
+import org.example.servicelinkbe.domain.Offer;
+import org.example.servicelinkbe.domain.ServiceProvider;
 import org.example.servicelinkbe.domain.create.CreateOfferRequest;
 import org.example.servicelinkbe.domain.create.CreateResponse;
 import org.example.servicelinkbe.domain.get.GetAllOffersResponse;
@@ -27,12 +30,27 @@ import java.time.format.DateTimeParseException;
 @Slf4j
 public class OfferController {
     private final GetOffersUseCase getOffersUseCase;
+    private final GetSingleOfferUseCase getSingleOfferUseCase;
     private final CreateOfferUseCase createOfferUseCase;
     private final FileStorageService fileStorageService;
 
     @GetMapping("{id}")
     public ResponseEntity<GetAllOffersResponse> getOffers(@PathVariable(value = "id") final Long id){
         return ResponseEntity.ok(getOffersUseCase.get(id));
+    }
+
+    @GetMapping("/offer/{offerId}")
+    public ResponseEntity<Offer> getOfferById(@PathVariable(value = "offerId") final Long offerId){
+        Offer offer = null;
+        try {
+            offer = getSingleOfferUseCase.get(offerId);
+            if(offer == null){
+                return  ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        return ResponseEntity.ok().body(offer);
     }
 
     @RequestMapping

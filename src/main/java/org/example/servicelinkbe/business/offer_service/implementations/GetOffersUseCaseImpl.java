@@ -1,6 +1,5 @@
 package org.example.servicelinkbe.business.offer_service.implementations;
 
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.example.servicelinkbe.business.offer_service.interfaces.GetOffersUseCase;

@@ -14,7 +14,7 @@ import org.example.servicelinkbe.persistance.repositories.OfferRepo;
 import org.example.servicelinkbe.persistance.repositories.ProvisionRepo;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Service
 @AllArgsConstructor
@@ -26,8 +26,8 @@ public class CreateAppointmentUseCaseImpl implements CreateAppointmentUseCase {
     @Transactional
     @Override
     public CreateResponse create(CreateAppointmentRequest request) {
-        LocalDateTime startDate = request.getStartDate();
-        LocalDateTime endDate = request.getEndDate();
+        OffsetDateTime startDate = request.getStartDate();
+        OffsetDateTime endDate = request.getEndDate();
 
         if (appointmentRepo.existsByCreatedAt(startDate)) {
             throw new EntityExistsException("Appointment already exists for this date");

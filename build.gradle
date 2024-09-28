@@ -2,6 +2,8 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.1.1'
 	id 'io.spring.dependency-management' version '1.1.5'
+	id 'org.flywaydb.flyway' version '9.22.0'
+
 }
 
 group = 'org.example'
@@ -31,6 +33,7 @@ dependencies {
 
 	compileOnly 'org.projectlombok:lombok'
 
+	implementation 'io.github.cdimascio:dotenv-java:2.2.0'
 	implementation 'com.amazonaws:aws-java-sdk-s3:1.12.300' // Use the latest version
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5-jakarta:2.14.1' // Updated to the Jakarta version
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'

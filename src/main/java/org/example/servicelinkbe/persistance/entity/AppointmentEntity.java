@@ -10,6 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Getter
 @Setter
@@ -35,18 +36,16 @@ public class AppointmentEntity {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @NotBlank
-    @Length(min = 2, max = 255)
     @Column(name = "description")
     private String description;
 
     @NotNull
     @Column(name = "start_date")
-    private LocalDateTime startDate;
+    private OffsetDateTime startDate;
 
     @NotNull
     @Column(name = "end_date")
-    private LocalDateTime endDate;
+    private OffsetDateTime endDate;
 
     @NotBlank
     @Length(min = 2, max = 255)

@@ -69,6 +69,7 @@ public class WebSecurityConfig {
                                     SERVICES_ENDPOINT+"/user/{id}",
                                     OFFERS_ENDPOINT,
                                     OFFERS_ENDPOINT+"/{id}",
+                                    OFFERS_ENDPOINT+"/offer/{offerId}",
                                     APPOINTMENTS_ENDPOINT+"/serviceId/{serviceId}",
                                     APPOINTMENTS_ENDPOINT+"/{id}",
                                     "/api/health")

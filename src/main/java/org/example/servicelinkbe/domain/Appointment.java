@@ -12,6 +12,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Data
 @Builder
@@ -26,9 +27,9 @@ public class Appointment {
 
     private String description;
 
-    private LocalDateTime startDate;
+    private OffsetDateTime startDate;
 
-    private LocalDateTime endDate;
+    private OffsetDateTime endDate;
 
     private String clientName;
 

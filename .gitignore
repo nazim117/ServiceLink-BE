@@ -1,6 +1,9 @@
 # Compiled class file
 *.class
 
+.env
+/config/.env*
+
 #Task definition
 quickserve-be-task-definition-revision22.json
 logback.xml
